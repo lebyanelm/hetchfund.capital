@@ -1,0 +1,85 @@
+@import "../../../variables.scss";
+
+// HETCHER INFORMATION CONTAINER
+.hetcher-information-container {
+  display: grid;
+  grid-template-columns: 0.4fr 0.6fr;
+  gap: $_20_SPACING_SIZE;
+  margin: $_20_SPACING_SIZE 0;
+}
+
+// HETCHER AVATAR
+.hetcher-information-container .hetcher-avatar {
+  height: 100px;
+  width: 100px;
+  background: $LIGHT_COLOR;
+  border-radius: 50px;
+  background-size: cover;
+  background-position: center center;
+}
+
+// THE NAME OF THE HETCHER AND POSITION TITLE
+.hetcher-information-container .hetcher-minimal-details {
+  margin: $_10_SPACING_SIZE 0;
+  padding: $_10_SPACING_SIZE 0;
+  border-bottom: $BORDER;
+}
+
+.hetcher-information-container .hetcher-title,
+.hetcher-information-container .hetcher-follow-stats .name,
+.hetcher-information-container .hetcher-name {
+  text-transform: capitalize;
+}
+
+.hetcher-information-container .hetcher-title *,
+.hetcher-information-container .hetcher-follow-stats .name * {
+  font-size: small;
+  color: transparentize($DARK_COLOR, 0.4);
+}
+
+// HETCHER FOLLOW/FOLLOWING STATS
+.hetcher-information-container .hetcher-follow-stats {
+  display: flex;
+  align-items: center;
+  margin: 0 0;
+  gap: $_20_SPACING_SIZE;
+}
+
+.hetcher-information-container .hetcher-follow-stats .hetcher-followers {
+  display: flex;
+  flex-direction: column;
+}
+
+.hetcher-information-container .hetcher-follow-stats .value {
+  font-weight: 900;
+  font-family: "Arial Black", sans-serif;
+  font-size: larger;
+}
+
+// HETCHER BIO
+.hetcher-information-container .hetcher-bio {
+  color: transparentize($DARK_COLOR, 0.2);
+}
+
+// LISTED CURATED CAMPAIGN EGGS
+.tabs {
+  display: flex;
+  gap: $_20_SPACING_SIZE;
+  align-items: center;
+  margin-bottom: $_10_SPACING_SIZE;
+  border-bottom: $BORDER;
+}
+
+.tabs a {
+  padding-bottom: $_10_SPACING_SIZE;
+  color: $DARK_COLOR;
+  border-bottom: 4px solid transparent;
+}
+
+.tabs a:hover {
+  border-bottom: 4px solid $DARK_COLOR;
+}
+
+.curated-egg-campaigns {
+  margin: calc($_20_SPACING_SIZE * 2) 0;
+}

@@ -2,24 +2,55 @@
   <div class="error-page-container">
     <div class="section">
       <!-- PLAFTORM LOGO -->
-      <img class="platform-logo" src="/assets/logo-text-outlined.svg" alt="Platform Logo (with Text)">
+      <img
+        class="platform-logo"
+        src="/assets/icon.svg"
+        alt="Platform Logo (with Text)"
+      />
 
-      <div class="error-page-code">{{error_title}}</div>
-      <div class="error-page-title"> That's unexpected. You might be an invader at act.</div>
-      <p class="error-page-description">{{error_message}}</p>
+      <div class="error-page-header">{{error_title}}</div>
+      <div class="error-page-title">
+        <b>That's unexpected. You might be an invader at act.</b>
+      </div>
+      <p class="error-page-description paragraph-text-style">
+        {{error_message}}
+      </p>
 
       <div class="error-page-buttons">
-        <a class="button" (click)="this.goBack()">Take me back</a>
-        <a href="https://www.hetchfund.capital/random-egg" class="button secondary">Play the Odds</a>
+        <a class="button" (click)="this.goBack()">Please take me back</a>
+        <a
+          href="https://www.hetchfund.capital/random-egg"
+          class="button secondary"
+          >Play a Game &mdash; Guess the egg</a
+        >
       </div>
 
-      <br>
-      <a href="">Check our status page for system health</a>
+      <br />
+      <a href="">Visit our system status page</a>
 
       <div class="error-page-footer">
-        <p>Hetchfund.Capital &trade;, A product of Nextify Technologies, (PTY) LTD reg. 2020/43053/07. All rights reserved &copy;</p>
+        <p>
+          Hetchfund.Capital &trade;, A product of Nextify Technologies, (PTY)
+          LTD reg. 2020/43053/07. All rights reserved &copy;
+        </p>
       </div>
     </div>
-    <div class="section"></div>
+    <div class="section">
+      <ion-content>
+        <div class="header-text-style">Eggs you might be interested in</div>
+        <div class="paragraph-text-style">
+          Incase you found a dead&mdash;end here are eggs specially selected for
+          you.
+        </div>
+        <div class="page-eggs-layout">
+          <app-egg></app-egg>
+          <app-egg></app-egg>
+          <app-egg></app-egg>
+          <app-egg></app-egg>
+          <app-egg></app-egg>
+          <app-egg></app-egg>
+        </div>
+      </ion-content>
+    </div>
   </div>
 </div>

@@ -1,10 +1,12 @@
 // COLORS
 $THEME_COLOR: #00684a;
 $DARK_COLOR: #162328;
-$WHITE_COLOR: #FFFFFF;
-$LIGHT_COLOR: #E8E7B5;
-$GRAY_COLOR: #e4ece1;
-$DANGER_COLOR: #FF6347;
+$WHITE_COLOR: #ffffff;
+$LIGHT_COLOR: #f5f5f5;
+$GRAY_COLOR: #d1d1d1;
+$BACKGROUND_COLOR: $LIGHT_COLOR;
+$DARK_GRAY_COLOR: #b6b6b6;
+$DANGER_COLOR: #ff6347;
 
 // SHAPES AND SIZES
 $_5_SPACING_SIZE: 5px;
@@ -17,6 +19,6 @@ $BORDER: 1.5px solid $GRAY_COLOR;
 $BORDER_RADIUS: 0;
 
 // TYPOGRAPHY
-$FONT_FAMILY:  "GT Walsheim Pro", "Roboto", sans-serif, arial;
+$FONT_FAMILY: "GT Walsheim Pro", "Roboto", sans-serif, arial;
 $FONT_FAMILY_MONOSPACED: "Fira Code", monospace, sans-serif, arial;
 $FONT_FAMILY_HEADER: "GT Walsheim Pro", $FONT_FAMILY;

@@ -1,42 +1,83 @@
 <div class="recently-viewed-egg-container content-wrapper">
   <!-- Curator section -->
-  <div class="curator-section">
-    <div class="curator-avatar"></div>
-    <div class="curator-name header-text-style smaller">Gregory</div>
-    <div class="curator-selected-oganisation paragraph-text-style small">Macbang Industries</div>
-    <a class="curator-follow paragraph-text-style small">Follow</a>
-
-  </div>
-
-  <!-- Egg information -->
   <div class="egg-container">
-    <div class="egg-container-thumbnail-container">
-      <div class="egg-container-thumbnail"></div>
+    <div class="curator-section">
+      <div class="curator-avatar"></div>
+      <div class="curator-name header-text-style smaller">Gregory</div>
+      <div class="curator-selected-oganisation paragraph-text-style small">
+        Macbang Industries
+      </div>
+      <a class="curator-follow paragraph-text-style small">Follow</a>
     </div>
-    <div class="egg-container-details">
-      <a class="egg-container-name header-text-style small">Gamebox: Self-balanced gamepad, snack holder.</a>
-      <div class="egg-container-description paragraph-text-style">A self-balanced gamepad and snack holder tray without spills and readily mountable.</div>
 
-      <a class="paragraph-text-style small" href="/recently-viewed" class="egg-container-link">Show other recently viewed</a>
+    <!-- Egg information -->
+    <div class="egg">
+      <div class="egg-container-thumbnail-container">
+        <div class="egg-container-thumbnail"></div>
+      </div>
+      <div class="egg-container-details">
+        <a class="egg-container-name header-text-style small"
+          >Gamebox: Self-balanced gamepad, snack holder.</a
+        >
+        <div class="egg-container-description paragraph-text-style">
+          A self-balanced gamepad and snack holder tray without spills and
+          readily mountable.
+        </div>
+
+        <a
+          class="paragraph-text-style small"
+          href="/recently-viewed"
+          class="egg-container-link"
+          >Show other recently viewed</a
+        >
+      </div>
     </div>
   </div>
 
   <!-- Egg perfomance and social sharing -->
   <div class="egg-perfomance-socials">
-    <div class="header-text-style smaller">Let your friends know about this egg.</div>
-    <div class="paragraph-text-style">Share this campaign with friends and family to help it perform better and reach it's defined goal.</div>
-
-    <div class="egg-perfomance-progress">
-      <div class="egg-perfomance-current" [style]="'width: ' + this.percentage_funded * 100 + '%'"></div>
+    <div class="header-text-style smaller">
+      Let your friends know about this egg.
+    </div>
+    <div class="paragraph-text-style">
+      Share this campaign with friends and family to help it perform better and
+      reach it's defined goal.
     </div>
 
-    <div class="paragraph-text-style uppercase small"><strong >{{floor(this.percentage_funded * 100)}}%</strong> FUNDED | 19 DAYS LEFT FOR EGG TO CRACK</div>
+    <div class="egg-perfomance-progress">
+      <div
+        class="egg-perfomance-current"
+        [style]="'width: ' + this.percentage_funded * 100 + '%'"
+      ></div>
+    </div>
 
-    <div class="paragraph-text-style small egg-perfomance-funds-raised"><span class="currency">ZAR</span> 403,432 raised in total</div>
+    <div class="paragraph-text-style uppercase small">
+      <span class="egg-perfomance-funded-percentage"
+        >{{ floor(this.percentage_funded * 100) }}%</span
+      >
+      out of
+      <span
+        ><span class="currency">{{ this.currencyResolver.currency }}</span>
+        {{ this.floor(this.currencyResolver.value * 120) }}</span
+      >
+      FUNDED | 19 DAYS LEFT
+    </div>
+
+    <a class="paragraph-text-style small egg-perfomance-funds-raised"
+      ><span class="currency">{{ this.currencyResolver.currency }}</span>
+      {{ this.floor(this.currencyResolver.value * 40) }} raised in total</a
+    >
 
     <div class="egg-socials-buttons">
-      <button class="social-button LinkedIn">Fund this project</button>
-      <button class="social-button share-link">Copy the <strong>Share Link</strong></button>
+      <button
+        class="social-button LinkedIn"
+        (click)="this.loaderService.showLoader()"
+      >
+        Fund this project
+      </button>
+      <button class="social-button share-link">
+        Copy the <strong>Share Link</strong>
+      </button>
     </div>
   </div>
 </div>

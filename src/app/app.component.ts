@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoaderService } from './services/loader.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  isLoaderShown = false;
+  constructor(private loaderService: LoaderService) {
+    this.isLoaderShown = this.loaderService.isLoading;
+    this.loaderService.state.subscribe((state) => (this.isLoaderShown = state));
+  }
 }

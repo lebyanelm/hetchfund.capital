@@ -1,25 +1,71 @@
 <div class="header-container">
   <div class="desktop-header-container">
-    <div class="header-logo-container"><img src="/assets/icon.svg" alt="Hetchfund Logo"></div>
+    <a class="header-logo-container" href="/"
+      ><img src="/assets/icon.svg" alt="Hetchfund Logo"
+    /></a>
 
     <div class="header-navigation-links">
-      <a href="/categories" class="navigation-link no-decoration">Browse categories</a>
-      <a href="/create" class="navigation-link no-decoration">Create a campaign</a>
+      <a href="/categories" class="navigation-link no-decoration"
+        >Browse categories</a
+      >
+      <a href="/create" class="navigation-link no-decoration"
+        >Create a campaign</a
+      >
+      <a class="navigation-link profile-link no-decoration">
+        <span class="profile-name theme-color-style icon-text-style"
+          >Choose base currency <ion-icon name="chevron-down-sharp"></ion-icon>
+        </span>
+      </a>
     </div>
-    
+
     <div class="header-spacing"></div>
-    
+
     <div class="header-navigation-links">
-      <a href="/search" class="navigation-link no-decoration icon-text-style"> <ion-icon name="search"></ion-icon> Search our farm</a>
+      <a href="/search" class="navigation-link no-decoration icon-text-style">
+        <ion-icon name="search"></ion-icon> Search our farm</a
+      >
       <!-- When there is an active session -->
-      <a href="/profile/lebyalm" class="navigation-link profile-link no-decoration" *ngIf="isSessionActive">
-        <span class="profile-name theme-color-style icon-text-style">Lebyane, L <ion-icon name="chevron-down-sharp"></ion-icon> </span>
-        <span class="profile-avatar" data-notification-count="43"></span>
+      <a
+        [href]="'/hetcher/' + sessionData?.username"
+        class="navigation-link profile-link no-decoration"
+        *ngIf="isSessionActive"
+      >
+        <span class="profile-name theme-color-style icon-text-style"
+          >{{ sessionData?.display_name }}
+          <ion-icon name="chevron-down-sharp"></ion-icon>
+        </span>
+        <span
+          class="profile-avatar"
+          [style]="
+            'background-image: url(' + this.sessionData?.profile_image + ')'
+          "
+          [data-notification-count]="this.sessionData?.notifications.length"
+        ></span>
       </a>
 
       <!-- When there's no session active -->
-      <a href="/signin" class="navigaion-link no-decoration" *ngIf="!isSessionActive">Sign-In</a>
-      <a href="/signin" class="navigaion-link no-decoration" *ngIf="!isSessionActive">Create an account</a>
+      <a
+        href="/signin"
+        class="navigaion-link no-decoration"
+        *ngIf="!isSessionActive"
+        >Sign-In</a
+      >
+      <a
+        href="/create-account"
+        class="navigaion-link no-decoration"
+        *ngIf="!isSessionActive"
+        >Create an account</a
+      >
+    </div>
+  </div>
+
+  <div class="mobile-header-container">
+    <div class="header-logo-container">
+      <img src="/assets/icon.svg" alt="Hetchfund Logo" />
+    </div>
+    <div class="hamburgar-menu-button">
+      <span></span>
+      <span></span>
     </div>
   </div>
 </div>

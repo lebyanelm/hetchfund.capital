@@ -16,7 +16,7 @@
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 @import "~@ionic/angular/css/padding.css";
@@ -27,108 +27,173 @@
 @import "./variables.scss";
 
 // GENERAL RULE STYLING AND RESETS
-body, ion-content {
-    padding: 0;
-    margin: 0;
-    background: transparentize(gray, .97);
-    --background: transparentize(gray, .5);
+body,
+ion-content,
+textarea {
+  padding: 0;
+  margin: 0;
+  background: $BACKGROUND_COLOR;
+  --background: transparent;
 }
 
+// PAGE CONTENT
 body .page-content {
-    padding: $_20_SPACING_SIZE;
+  padding: $_20_SPACING_SIZE;
+  padding-top: 80px;
+}
+
+body .page-content.with-pattern::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+
+  background-image: url("/assets/rectangle-pattern.svg");
+  background-repeat: repeat;
+  background-size: contain;
+  opacity: 0.02;
+}
+
+body .page-content.centered-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px;
 }
 
 body .content-wrapper {
-    padding: var(--content-padding);
+  padding: var(--content-padding);
 }
 
 :root {
-    // Utilized for responsive typography design
-    --font-size-multiplier: 1;
-    --content-padding: $_10_SPACING_SIZE;
-    // Block black/dark mode forcefully
-    color-scheme: light only;
+  // Utilized for responsive typography design
+  --font-size-multiplier: 1;
+  --content-padding: $_10_SPACING_SIZE;
+  // Block black/dark mode forcefully
+  color-scheme: light only;
 }
 
 * {
-    box-sizing: border-box;
-    font-family: $FONT_FAMILY;
-    font-weight: 500;
+  box-sizing: border-box;
+  font-family: $FONT_FAMILY;
+  font-weight: 500;
 }
-
 
 // FIXING THE TYPOGRAPHY
 * {
-    font-size: calc(1rem * var(--font-size-multiplier));
+  font-size: calc(1rem * var(--font-size-multiplier));
 }
 
 *.theme-text-style {
-    color: $THEME_COLOR;
+  color: $THEME_COLOR;
 }
 
 .paragraph-text-style {
-    display: block;
-    color: transparentize($DARK_COLOR,  0.4);
-    font-weight: 400; // Regular font weight
-    max-width: 80%;
+  display: block;
+  color: transparentize($DARK_COLOR, 0.4);
+  font-weight: 400; // Regular font weight
+  max-width: 80%;
 }
 
 .paragraph-text-style.small {
-    font-size: 0.875rem; // 14PX
+  font-size: 0.875rem; // 14PX
 }
 
 .icon-text-style {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
 }
 
 // HEADER
 .header-text-style {
-    font-size: 1.875rem; // 30PX
-    font-family: $FONT_FAMILY_HEADER;
-    font-weight: 900; // Ultra Black weight
+  font-size: 1.875rem; // 30PX
+  font-family: $FONT_FAMILY_HEADER;
+  font-weight: 900; // Ultra Black weight
 }
 
 .header-text-style.small {
-    font-size: 1.500rem;
+  font-size: 1.5rem;
 }
 
 .header-text-style.smaller {
-    font-size: 1rem;
+  font-size: 1rem;
+}
+
+.header-text-style.colored {
+  color: $THEME_COLOR;
+}
+
+// SECTION TITLES
+.section-title-style {
+  font-size: small;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: $THEME_COLOR;
 }
 
 a {
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 4px;
-    color: $THEME_COLOR;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  color: $THEME_COLOR;
+}
+
+a:hover {
+  text-decoration-thickness: 3px;
+  cursor: pointer;
 }
 
 a.no-decoration {
-    text-decoration: none;
+  text-decoration: none;
 }
 
+// LOADERS
+button app-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: transparentize($DARK_COLOR, 0.5);
+}
+
+button app-loader[state="false"] {
+  opacity: 0;
+  user-select: none;
+}
 
 // BUTTONS
 button,
 .button {
-    display: inline-block;
-    outline: none;
-	padding: 13px 15px;
-	border-radius: $BORDER_RADIUS;
-	font-weight: bold;
-	background: $DARK_COLOR;
-	color: $LIGHT_COLOR;
-	border: none;
-	margin: 10px 0;
-	text-transform: uppercase;
-	cursor: pointer;
-	opacity: .9;
-	transition: opacity 300ms ease;
-	letter-spacing: 2px;
-    text-decoration: none !important;
-    margin-right: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $_10_SPACING_SIZE;
+  outline: none;
+  padding: 13px 15px;
+  border-radius: $BORDER_RADIUS;
+  font-weight: 900;
+  background: $THEME_COLOR;
+  color: $LIGHT_COLOR;
+  border: none;
+  margin: 10px 0;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0.9;
+  transition: opacity 300ms ease;
+  letter-spacing: 2px;
+  text-decoration: none !important;
+  margin-right: 10px;
+  position: relative;
 }
 
 button > span,
@@ -137,66 +202,279 @@ button > strong,
 .button > strong,
 button,
 .button {
-    font-size: 0.700rem !important;
+  font-size: 0.7rem !important;
+}
+
+button:disabled {
+  opacity: 0.7;
+}
+
+button.dark-color,
+.button.dark-color {
+  background: $DARK_COLOR;
 }
 
 button.secondary,
 .button.secondary {
-    background: transparent;
-    color: $DARK_COLOR;
-    border: $BORDER;
+  background: $WHITE_COLOR;
+  color: $DARK_COLOR;
+  border: $BORDER;
 }
 
-button:hover,
+button.icon-button,
+.button.icon-button {
+  background: transparent;
+  padding: $_10_SPACING_SIZE;
+  color: $DARK_COLOR;
+}
+
+button.icon-button ion-icon,
+.button.icon-button ion-icon {
+  font-size: 22px; // TODO: Make it rems
+}
+
+button:hover:not(:disabled),
 .button:hover {
-	opacity: 1;
+  opacity: 1;
 }
 
 button.error,
 .button.error {
-	background: $DANGER_COLOR;
+  background: $DANGER_COLOR;
+}
+
+// INPUTS
+input {
+  display: block;
+  outline: none;
+  width: 100%;
+  padding: 10px 0;
+  text-indent: 15px;
+  border-radius: $BORDER_RADIUS;
+  background: $WHITE_COLOR;
+  font-weight: bold;
+  color: $DARK_COLOR;
+  border: $BORDER;
+  margin: calc($_10_SPACING_SIZE) 0;
+  cursor: pointer;
+  text-decoration: none !important;
+  margin-right: 10px;
+}
+
+// EGGS LAYOUT
+.page-eggs-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: $_20_SPACING_SIZE;
+  padding: calc($_20_SPACING_SIZE * 2) 0;
+  height: fit-content;
+}
+
+.page-eggs-layout .egg-container .campaign-progress {
+  height: 8px;
+  width: 100%;
+  background: $LIGHT_COLOR;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+// FORM FIELDS: SIGN IN FIELDS, CREATE ACCOUNT
+.formfields_ {
+  width: 400px;
+  height: fit-content;
+  padding: $_20_SPACING_SIZE;
+  border: $BORDER;
+  background: $WHITE_COLOR;
+  margin: calc($_20_SPACING_SIZE * 2) 0;
+}
+
+// FORMFIELD HEADER
+.formfields_ .formfields_-header {
+  display: block;
+  margin-bottom: $_20_SPACING_SIZE;
+}
+
+.formfields_ .formfields_-header span,
+.formfields_ .clause-notice {
+  font-weight: 400;
+  color: transparentize($DARK_COLOR, 0.3);
+}
+
+.formfields_ .formfields_-fields .field:focus {
+  border-color: $DARK_COLOR;
+}
+
+// CHECKBOX COMBOS
+.formfields {
+  background: transparent;
+  border: none !important;
+  width: 100%;
+}
+
+.formfields .formfield {
+  margin-top: $_10_SPACING_SIZE;
+  width: 100%;
+}
+
+.formfields .split-formfields {
+  display: flex;
+  width: 100%;
+  gap: $_10_SPACING_SIZE;
+}
+
+// SIGN IN AND SIGN UP FORMFIELDS
+.account-formfields {
+  width: 400px;
+  height: fit-content;
+  padding: $_20_SPACING_SIZE;
+  border: $BORDER;
+  // background: $WHITE_COLOR;
+  margin: calc($_20_SPACING_SIZE * 2) 0;
+}
+
+.account-formfields button,
+.account-formfields .button {
+  width: 100%;
+}
+
+.formfields_ .clause-notice {
+  display: block;
+  padding-bottom: $_20_SPACING_SIZE;
+  border-bottom: $BORDER;
+}
+
+.formfields_ .error-notice {
+  color: $DANGER_COLOR;
+  font-weight: bold;
+  font-size: small;
+}
+
+// FORMFIELD SOCIAL BUTTONS
+.formfields .social-buttons {
+  position: relative;
+}
+
+.formfields .social-buttons button.apple {
+  background: black;
+}
+
+// FOR SPLITING SECTIONS INTO GROUPS
+.separator {
+  width: 100%;
+  // height: 3px;
+  border-top: $BORDER;
+  margin: $_20_SPACING_SIZE 0;
+  position: relative;
+}
+
+.separator::before {
+  content: attr(title);
+  display: block;
+  position: absolute;
+  background: $BACKGROUND_COLOR;
+  padding: 0 $_10_SPACING_SIZE;
+  font-size: small;
+  text-transform: uppercase;
+  font-weight: bold;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
 }
 
 // RESPONSIVENESS
-
 @media screen and (max-width: 853px) {
-    // ERROR PAGES
-    .error-page-container {
-        flex-direction: column;
-    }
+  // ERROR PAGES
+  .error-page-container {
+    flex-direction: column;
+  }
 
-    .error-page-container div.section:first-child {
-        border-right: none;
-    }
+  .error-page-container div.section:first-child {
+    border-right: none;
+  }
 
-    .error-page-container div.section:last-child {
-        margin-top: 20px;
-    }
+  .error-page-container div.section:last-child {
+    margin-top: 20px;
+  }
 
-    .error-page-container .error-page-code {
-        margin-top: $_20_SPACING_SIZE;
-        font-size: 70px;
-        font-weight: 500;
-    }
+  .error-page-container .error-page-code {
+    margin-top: $_20_SPACING_SIZE;
+    font-size: 70px;
+    font-weight: 500;
+  }
 
-    .error-page-container .error-page-buttons {
-        margin: 20px 0 5px 0;
-    }
+  .error-page-container .error-page-buttons {
+    margin: 20px 0 5px 0;
+  }
 
-    // BUTTONS
-    button,
-    .button {
-	    padding: 10px 13px;
-    }
+  // BUTTONS
+  button,
+  .button {
+    padding: 10px 13px;
+  }
 
-    .page-content {
-        padding: 10px;
-    }
+  .page-content {
+    padding: 10px;
+  }
 }
 
 // LARGER SCREEN SIZES
 @media screen and (min-width: 1570px) {
-    .content-wrapper {
-        padding: $_20_SPACING_SIZE 15% !important;
-    }
+  .content-wrapper {
+    padding: $_20_SPACING_SIZE 15% !important;
+  }
+}
+
+// SMALLER
+@media screen and (max-width: 1260px) {
+  .page-eggs-layout {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 1020px) {
+  .page-eggs-layout {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+// MOBILE DEVICES
+@media screen and (max-width: 650px) {
+  body,
+  ion-content {
+    background: #fff;
+  }
+
+  .page-eggs-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .page-eggs-layout app-egg .egg-campaign-container {
+    border: none;
+    border-bottom: $BORDER;
+    border-width: 2px;
+    padding-bottom: $_20_SPACING_SIZE;
+  }
+
+  .page-eggs-layout app-egg:last-child .egg-campaign-container {
+    border-bottom: none;
+  }
+
+  .page-eggs-layout app-egg .egg-campaign-container .egg-campaign-details {
+    padding: $_10_SPACING_SIZE 0 !important;
+  }
+
+  .page-eggs-layout app-egg .funding-perfomance .amount-funded-percentage {
+    padding: $_10_SPACING_SIZE 0 !important;
+  }
+
+  app-recently-viewed-egg {
+    display: none;
+  }
+
+  .formfields_ {
+    border: none;
+    padding: calc($_20_SPACING_SIZE * 2) 0;
+    background: transparent;
+  }
 }

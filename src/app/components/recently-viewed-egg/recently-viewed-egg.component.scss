@@ -8,8 +8,7 @@
     background: #EEE; 
 }
 
-// CURATOR SECTION
-.recently-viewed-egg-container .curator-section {
+.egg-container .curator-section {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,40 +16,45 @@
     text-align: center;
 }
 
-.recently-viewed-egg-container .curator-section .curator-avatar {
+.egg-container .curator-section .curator-avatar {
     height: 50px;
     width: 50px;
     background-color: $DARK_COLOR;
     border-radius: 100px;
     background-size: cover;
     background-position: center center;
-    background-image: url(https://avatars.dicebear.com/api/pixel-art-neutral/Macbang.svg);
+    background-image: url(https://avatars.dicebear.com/api/pixel-art-neutral/lebyanelm.svg);
 }
 
-// EGG INFORMATION
-.recently-viewed-egg-container .egg-container {
+.egg-container,
+.egg-container .egg {
     display: flex;
     gap: $_10_SPACING_SIZE;
+    align-items: center;
 }
 
-.recently-viewed-egg-container .egg-container .egg-container-thumbnail {
+.egg-container-thumbnail {
     height: 200px;
     width: 200px;
     background: #DDD;
+    background-position: center center;
+    background-size: cover;
+    background-image: url(https://c1.iggcdn.com/indiegogo-media-prod-cld/image/upload/c_fit,w_auto,g_center,q_auto:best,dpr_1.0,f_auto/xeq8xre6kqjuiewobx8v);
 }
 
-.recently-viewed-egg-container .egg-container .egg-container-details {
+.egg-container .egg-container-details {
     display: flex;
     padding: 0 $_10_SPACING_SIZE;
     flex-direction: column;
     gap: $_10_SPACING_SIZE;
 }
 
-.recently-viewed-egg-container .egg-container .egg-container-name {
+.egg-container .egg-container-name {
     color: $DARK_COLOR;
+    cursor: pointer;
 }
 
-.recently-viewed-egg-container .egg-container .egg-container-name:hover {
+.egg-container .egg-container-name:hover {
     color: $THEME_COLOR;
 }
 
@@ -63,8 +67,6 @@
 
 .recently-viewed-egg-container .egg-perfomance-socials .egg-perfomance-funds-raised {
     text-decoration: underline;
-    text-underline-offset: $_5_SPACING_SIZE;
-    text-decoration-thickness: 3px;
     cursor: pointer;
 }
 

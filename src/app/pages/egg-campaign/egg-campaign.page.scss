@@ -1,0 +1,245 @@
+@import "../../../variables.scss";
+
+// Ttitle section
+.egg-campaign-description {
+    margin: 0 0 $_20_SPACING_SIZE 0;
+}
+
+// Thumbnail and Stages, THE EGG CONTAINER BODY CONTENT SECTION
+.egg-campaign-thumbnail-stages,
+.bottom-body-section,
+.tab-selector-section {
+    display: grid;
+    grid-template-columns: 1fr .56fr;
+    gap: $_20_SPACING_SIZE;
+}
+
+.egg-campaign-thumbnail-stages .egg-campaign-thumbnail-container {
+    flex: 1;
+}
+
+.egg-campaign-thumbnail-stages .egg-campaign-thumbnail-container .egg-campaign-thumbnail {
+    height: 400px;
+    width: 100%;
+    background: $GRAY_COLOR;
+    background-position: cover;
+    background-size: cover;
+    background-image: url(https://c1.iggcdn.com/indiegogo-media-prod-cld/image/upload/c_fit,w_auto,g_center,q_auto:best,dpr_1.0,f_auto/xeq8xre6kqjuiewobx8v);
+}
+
+.egg-campaign-thumbnail-stages .egg-campaign-thumbnail-container .hetching-progress {
+    width: 100%;
+    height: 8px;
+}
+
+.egg-campaign-thumbnail-stages .egg-campaign-thumbnail-container .hetching-progress-current {
+    height: 100%;
+    width: 67%;
+    background: $THEME_COLOR;
+}
+
+// THE STAGES
+.egg-campaign-stages-container .egg-campaign-stages-title-top {
+    padding-bottom: $_10_SPACING_SIZE;
+    border-bottom: $BORDER;
+    margin-bottom: $_10_SPACING_SIZE;
+}
+
+.egg-campaign-stages-container .egg-campaig-stages .stage {
+    display: flex;
+    align-items: center;
+    gap: $_5_SPACING_SIZE;
+    padding: $_10_SPACING_SIZE $_5_SPACING_SIZE;
+    border-radius: 4px;
+    margin: $_5_SPACING_SIZE 0;
+    cursor: pointer;
+    border: $BORDER;
+    border-color: transparent;
+}
+
+.egg-campaign-stages-container .egg-campaig-stages .stage.current {
+    background: $LIGHT_COLOR;
+    color: $THEME_COLOR;
+    border: $BORDER;
+}
+
+.egg-campaign-stages-container .egg-campaig-stages .stage .stage-name {
+    font-weight: 600;
+}
+
+// TABS SECTION
+.tab-selector-section {
+    align-items: center;
+    border-bottom: $BORDER;
+    border-width: 4px;
+    width: 100%;
+    margin: $_20_SPACING_SIZE 0;
+}
+
+.tab-selector-section .tabs .tab {
+    display: inline-block;
+    padding: $_10_SPACING_SIZE 0;
+    margin: 0 $_10_SPACING_SIZE;
+    font-weight: 600;
+    color: transparentize($DARK_COLOR, .4);
+}
+
+.tab-selector-section .tabs .tab.active {
+    border-bottom: 4px solid $THEME_COLOR;
+    color: $THEME_COLOR;
+}
+
+.tab-selector-section .tabs .tab:hover {
+    border-bottom: 4px solid $DARK_COLOR;
+    color: transparentize($DARK_COLOR, 0);
+}
+
+.tab-selector-section .tabs .tab:first-child {
+    margin-left: 0;
+}
+
+// THE TABS SECTION
+.bottom-body-section {
+    margin-top: $_20_SPACING_SIZE;
+}
+
+.bottom-body-section .selected-tab-view {
+    flex: 1;
+}
+
+.bottom-body-section .campaign-information-stats {
+    flex: .56;
+}
+
+// EGG CAMPAIGN STATISTICS INFORMATION
+.campaign-information-stats .campaign-statistics {
+    display: flex;
+    align-items: center;
+}
+
+// GRAPHBAR: HETCHING STRENGTH
+.campaign-information-stats .campaign-statistics .graphbars {
+    display: flex;
+    gap: 2px;
+    align-items: flex-end;
+}
+
+.campaign-information-stats .campaign-statistics .graphbars span {
+    display: inline-block;
+    width: 5px;
+    background: $GRAY_COLOR;
+}
+
+.campaign-information-stats .campaign-statistics .graphbars span.filled {
+    background: $THEME_COLOR;
+}
+
+.campaign-information-stats .campaign-statistics .graphbars span:nth-child(1) {
+    height: 10px;
+}
+
+.campaign-information-stats .campaign-statistics .graphbars span:nth-child(2) {
+    height: 15px;
+}
+
+.campaign-information-stats .campaign-statistics .graphbars span:nth-child(3) {
+    height: 20px;
+}
+
+// EGG CAMPAIGN STATISTIC
+.campaign-information-stats .campaign-statistics {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: $_20_SPACING_SIZE;
+    padding-bottom: $_20_SPACING_SIZE;
+    border-bottom: $BORDER;
+}
+
+.campaign-information-stats .campaign-statistics .statistic {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $_5_SPACING_SIZE;
+}
+
+.campaign-information-stats .campaign-statistics .statistic .name {
+    color: transparentize($DARK_COLOR, .4);
+    font-size: small;
+    text-transform: uppercase;
+}
+
+.campaign-information-stats .campaign-statistics .statistic .value {
+    font-weight: 900;
+}
+
+// CURATOR INFORMATION
+.egg-campaign-curator {
+    margin: $_20_SPACING_SIZE 0;
+}
+
+
+.egg-campaign-curator .curator {
+    display: flex;
+    align-items: center;
+    gap: $_10_SPACING_SIZE;
+    padding: $_5_SPACING_SIZE 0;
+}
+
+.egg-campaign-curator .curator .avatar {
+    display: block;
+    height: 35px;
+    width: 35px;
+    border-radius: 100px;
+    background: $LIGHT_COLOR;
+    background-image: url(https://avatars.dicebear.com/api/pixel-art-neutral/lebyanelm.svg);
+    background-position: center center;
+    background-size: cover;
+}
+
+.egg-campaign-curator .curator .curator-details {
+    display: flex;
+    flex-direction: column;
+    gap: $_5_SPACING_SIZE;
+}
+
+.egg-campaign-curator .curator .name {
+    font-weight: bold;
+}
+
+.egg-campaign-curator .curator .name a {
+    color: $DARK_COLOR;
+}
+
+.egg-campaign-curator .curator .curator-egg-campaign-role {
+    color: transparentize($DARK_COLOR, .4);
+    font-size: small;
+}
+
+// FUNDING PURPOSE
+.egg-campaign-funding-purpose .funding-purpose {
+    color: transparentize($THEME_COLOR, .1);
+}
+
+// CATEGORIES LISTING
+.egg-campaign-categories-list {
+    margin-top: $_20_SPACING_SIZE;
+}
+
+.egg-campaign-categories-list a {
+    display: inline-block;
+    padding: $_5_SPACING_SIZE 0;
+    margin-right: $_10_SPACING_SIZE;
+    color: $DARK_COLOR;
+}
+
+// RELATED CAMPAIGNS
+.related-egg-campaigns {
+    margin-top: calc($_20_SPACING_SIZE * 4);
+}
+
+// SECTION TITLES
+.egg-campaign-curator .header-text-style,
+.egg-campaign-categories-list .header-text-style,
+.egg-campaign-funding-purpose .header-text-style {
+    margin-bottom: $_5_SPACING_SIZE;
+}

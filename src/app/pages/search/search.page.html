@@ -1,0 +1,28 @@
+<ion-content>
+  <app-header></app-header>
+
+  <div class="page-content">
+    <!-- Section seperator -->
+   <section class="content-wrapper">
+    <div class="header-text-style">Search</div>
+    <textarea
+      name="search"
+      placeholder="Enter a search word to find campaigns you're looking for..."
+      (keyup)="search(SearchInput.value)"
+      #SearchInput></textarea>
+
+    <section class="search-results" *ngIf="searchKey.length">
+      <br>
+      <div class="paragraph-text-style">Showing search results for <strong>"{{searchKey}}"</strong></div>
+      <div class="page-eggs-layout">
+        <app-egg></app-egg>
+        <app-egg></app-egg>
+        <app-egg></app-egg>
+        <app-egg></app-egg>
+      </div>
+    </section>
+   </section>
+  </div>
+  
+  <app-footer></app-footer>
+</ion-content>

@@ -1,0 +1,19 @@
+<ion-content>
+  <app-header></app-header>
+
+  <div class="page-content">
+    <!-- Section seperator -->
+   <section class="content-wrapper">
+    <div class="header-text-style">Categories</div>
+    
+    <div *ngFor="let categoryLetter of this.categoryKeys">
+      <div class="letter-separation">{{categoryLetter}}</div>
+      <div class="categories-container">
+        <a class="category" *ngFor="let category of this.categories?.[categoryLetter]" [href]="'/categories/' + category">{{category}}</a>
+      </div>
+    </div>
+
+   </section>
+  </div>
+  <app-footer></app-footer>
+</ion-content>

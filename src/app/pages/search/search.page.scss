@@ -1,0 +1,12 @@
+@import "../../../variables.scss";
+
+// SEARCH TEXTAREA BOX
+textarea {
+    width: 100%;
+    border: none !important;
+    font-size: 4rem;
+    font-family: "Arial Black";
+    font-weight: bolder;
+    color: $THEME_COLOR;
+    outline: none !important;
+}

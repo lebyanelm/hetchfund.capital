@@ -1,12 +1,25 @@
 <ion-content>
   <app-header></app-header>
-  <app-recently-viewed-egg></app-recently-viewed-egg>
 
   <div class="page-content">
+    <app-recently-viewed-egg></app-recently-viewed-egg>
+
     <!-- Section seperator -->
-    <div class="header-text-style small">Our best picked campaigns</div>
-    <div class="paragraph-text-style">Specially picked best perfoming eggs from our farms.</div>
+    <section class="content-wrapper">
+      <br />
+      <div class="header-text-style small">Best picked eggs</div>
+      <div class="paragraph-text-style">
+        Specially picked best perfoming eggs from our farms.
+      </div>
+
+      <div class="page-eggs-layout">
+        <app-egg></app-egg>
+        <app-egg></app-egg>
+        <app-egg></app-egg>
+        <app-egg></app-egg>
+      </div>
+    </section>
   </div>
-  
+
   <app-footer></app-footer>
 </ion-content>

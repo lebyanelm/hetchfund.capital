@@ -1,0 +1,92 @@
+<ion-content>
+  <app-header></app-header>
+
+  <div class="page-content">
+    <!-- Section seperator -->
+    <section class="content-wrapper">
+      <div class="header-text-style">
+        {{isFound == true ? "Hetcher" : "Hetcher profile not found."}}
+      </div>
+
+      <div class="hetcher-information-container" *ngIf="isFound">
+        <div class="hetcher-details-avatar">
+          <div
+            class="hetcher-avatar"
+            [style]="'background-image: url(' + this.hetcher?.profile_image + ')'"
+          ></div>
+
+          <div class="hetcher-minimal-details">
+            <div class="hetcher-name header-text-style smaller">
+              {{this.hetcher?.display_name}}
+            </div>
+            <div class="hetcher-title">
+              <span>{{this.hetcher?.occupation}}</span>
+              {{this.hetcher?.occupation && (this.hetcher?.nationality ||
+              this.hetcher?.home_city) ? "in" : "" }}
+              <span
+                >{{this.hetcher?.nationality}}{{this.hetcher?.nationality &&
+                this.hetcher?.home_city ? "," : "" }}
+                {{this.hetcher?.home_city}}</span
+              >
+            </div>
+          </div>
+
+          <div class="hetcher-follow-stats">
+            <div class="hetcher-followers">
+              <div class="value">{{this.hetcher?.followers.length}}</div>
+              <div class="name"><span>Followers</span></div>
+            </div>
+            <div class="hetcher-followers">
+              <div class="value">{{this.hetcher?.follows.length}}</div>
+              <div class="name"><span>Following</span></div>
+            </div>
+            <div class="hetcher-followers">
+              <div class="value">
+                {{this.hetcher?.eggs_funded.length}}{{this.determineLevelEnding(this.hetcher?.eggs_funded.length)}}
+              </div>
+              <div class="name"><span>Level</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hetcher-bio-description">
+          <div class="header-text-style colored smaller">About me</div>
+          <span class="hetcher-bio">
+            {{this.hetcher?.biography || "No biography for this hetcher."}}
+          </span>
+        </div>
+      </div>
+
+      <div class="curated-egg-campaigns" *ngIf="isFound">
+        <div></div>
+        <div class="page-eggs">
+          <div class="tabs">
+            <a class="header-text-style colored small no-decoration">
+              {{this.hetcher?.eggs.length > 0 ? "Curated campaigns" : "No
+              curated campaigns yet."}}
+              <span> {{this.hetcher?.eggs.length}}</span>
+            </a>
+
+            <a class="header-text-style small no-decoration">
+              Bookmarked campaigns
+              <span> {{this.hetcher?.eggs_bookmarked.length}}</span>
+            </a>
+
+            <a class="header-text-style small no-decoration">
+              Supporting campaigns
+              <span> {{this.hetcher?.eggs_funded.length}}</span>
+            </a>
+          </div>
+
+          <div class="page-eggs-layout" *ngIf="this.hetcher?.eggs.length > 0">
+            <app-egg
+              *ngFor="let egg of this.hetcher?.eggs"
+              [eggkey]="egg"
+            ></app-egg>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <app-footer></app-footer>
+</ion-content>

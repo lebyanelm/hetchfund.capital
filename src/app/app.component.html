@@ -1,3 +1,9 @@
 <ion-app>
   <ion-router-outlet></ion-router-outlet>
+  <div
+    class="whole-winder-loader-container"
+    [attr.isLoaderShown]="this.isLoaderShown"
+  >
+    <app-loader></app-loader>
+  </div>
 </ion-app>

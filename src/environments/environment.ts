@@ -3,7 +3,14 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+
+  // TEST: BACKEND SERVICES
+  accounts: "http://localhost:4000/accounts",
+  translator: "http://localhost:4001/translator",
+  payments: "http://localhost:4002/payments",
+  farmhouse: "http://localhost:4003/farmhouse",
+  media_resources: "http://localhost:4004/media-resources",
 };
 
 /*

@@ -2,64 +2,66 @@
 
 /* ERROR PAGES */
 .error-page-container {
-    display: flex;
-    height: 100vh;
-    width: 100%;
-    gap: $_20_SPACING_SIZE;
-    position: relative;
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  gap: $_20_SPACING_SIZE;
+  position: relative;
 }
 
 .error-page-container img.platform-logo {
-    opacity: .4;
-    filter: grayscale(1);
+  opacity: 0.4;
+  filter: grayscale(1);
 }
 
 .error-page-container > div.section {
-    height: 100vh;
+  height: 100vh;
 }
 
 .error-page-container > div.section:first-child {
-    padding: $_20_SPACING_SIZE;
-    border-right: $BORDER;
-    flex: .8
+  padding: $_20_SPACING_SIZE;
+  border-right: $BORDER;
+  flex: 0.8;
 }
 
 .error-page-container > div.section:last-child {
-    flex: 1;
-    background-image: url("/assets/pexels-charles-1851164.jpeg");
-    background-size: cover;
-    background-position: center center;
-    border-radius: 4px;
+  flex: 1;
+  background-size: cover;
+  background-position: center center;
+  border-radius: 4px;
+}
+
+.page-eggs-layout {
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .error-page-container > div.section:first-child img {
-    height: 45px;
+  height: 45px;
 }
 
 .error-page-container .error-page-footer {
-    display: none;
-    position: absolute;
-    bottom: 40px;
-    max-width: 40%;
+  display: none;
+  position: absolute;
+  bottom: 40px;
+  max-width: 40%;
 }
 
 .error-page-container .error-page-footer p {
-    font-size: small;
+  font-size: small;
 }
 
-.error-page-container .error-page-code {
-    font-size: 60px;
-    font-family: "Sketchetik", "Roboto", sans-serif, Arial, Helvetica;
-    font-weight: 500;
-    margin-top: 50px;
-    // font-style: italic;
+.error-page-container .error-page-header {
+  font-size: 60px;
+  font-weight: 500;
+  margin-top: 50px;
+  font-weight: 900;
 }
 
 .error-page-container .error-page-title {
-    font-size: large;
-    font-weight: 500;
+  font-size: large;
+  font-weight: 500;
 }
 
 .error-page-container .error-page-buttons {
-    margin: 50px 0 $_10_SPACING_SIZE 0;
+  margin: 50px 0 $_10_SPACING_SIZE 0;
 }

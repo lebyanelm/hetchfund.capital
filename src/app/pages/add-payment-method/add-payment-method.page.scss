@@ -1,0 +1,74 @@
+@import "../../../variables.scss";
+
+// PAYMENT INFORMATION CONTAINER
+.payment-information-container {
+  display: flex;
+  gap: $_20_SPACING_SIZE;
+}
+
+.payment-information-container > * {
+  flex: 1;
+}
+
+// INSTANT PAYMENT METHODS
+.payment-information-container .instant-methods {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: $_10_SPACING_SIZE;
+  margin: $_10_SPACING_SIZE 0;
+}
+
+.payment-information-container .instant-methods .instant-payment-method {
+  display: flex;
+  justify-content: space-between;
+  padding: $_10_SPACING_SIZE $_20_SPACING_SIZE;
+  border: $BORDER;
+  background: $WHITE_COLOR;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.payment-information-container
+  .instant-methods
+  .instant-payment-method
+  .payment-method-name {
+  font-weight: bolder;
+}
+
+.payment-information-container
+  .instant-methods
+  .instant-payment-method
+  .payment-method-name {
+  font-weight: bolder;
+}
+
+.payment-information-container .instant-methods .instant-payment-method:hover {
+  background: $DARK_COLOR;
+  border-color: $DARK_COLOR;
+}
+
+.payment-information-container
+  .instant-methods
+  .instant-payment-method[data-selected="true"] {
+  background: $THEME_COLOR;
+  border-color: $THEME_COLOR !important;
+  color: $WHITE_COLOR;
+}
+
+.payment-information-container
+  .instant-methods
+  .instant-payment-method:hover
+  * {
+  color: $LIGHT_COLOR;
+}
+
+// PAYMENTS DISCLAIMER
+.payments-disclaimer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding: $_20_SPACING_SIZE;
+  background: $GRAY_COLOR;
+  border-radius: 10px;
+}
