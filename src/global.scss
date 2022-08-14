@@ -24,3 +24,159 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+@import "./variables.scss";
+
+// GENERAL RULE STYLING AND RESETS
+body, ion-content {
+    padding: 0;
+    margin: 0;
+    background: transparentize(gray, .97);
+    --background: transparentize(gray, .5);
+}
+
+body .page-content {
+    padding: $_20_SPACING_SIZE;
+}
+
+:root {
+    // Utilized for responsive typography design
+    --font-size-multiplier: 1;
+    // Block black/dark mode forcefully
+    color-scheme: light only;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: $FONT_FAMILY;
+    font-weight: 500;
+}
+
+
+// FIXING THE TYPOGRAPHY
+* {
+    font-size: calc(1rem * var(--font-size-multiplier));
+}
+
+*.theme-text-style {
+    color: $THEME_COLOR;
+}
+
+.paragraph-text-style {
+    display: block;
+    color: transparentize($DARK_COLOR,  0.4);
+    font-weight: 400; // Regular font weight
+    max-width: 80%;
+}
+
+.paragraph-text-style.small {
+    font-size: 0.875rem; // 14PX
+}
+
+.icon-text-style {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+// HEADER
+.header-text-style {
+    font-size: 1.875rem; // 30PX
+    font-family: $FONT_FAMILY_HEADER;
+    font-weight: 900; // Ultra Black weight
+}
+
+.header-text-style.small {
+    font-size: 1.500rem;
+}
+
+.header-text-style.smaller {
+    font-size: 1rem;
+}
+
+a {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+    color: $THEME_COLOR;
+}
+
+a.no-decoration {
+    text-decoration: none;
+}
+
+
+// BUTTONS
+button,
+.button {
+    display: inline-block;
+    outline: none;
+	padding: 13px 15px;
+	border-radius: $BORDER_RADIUS;
+	font-weight: bold;
+	background: $DARK_COLOR;
+	color: $LIGHT_COLOR;
+	border: none;
+	margin: 10px 0;
+	text-transform: uppercase;
+	font-size: small;
+	cursor: pointer;
+	opacity: .9;
+	transition: opacity 300ms ease;
+	letter-spacing: 2px;
+    text-decoration: none !important;
+    margin-right: 10px;
+}
+
+button.secondary,
+.button.secondary {
+    background: transparent;
+    color: $DARK_COLOR;
+    border: $BORDER;
+}
+
+button:hover,
+.button:hover {
+	opacity: 1;
+}
+
+button.error,
+.button.error {
+	background: $DANGER_COLOR;
+}
+
+// RESPONSIVENESS
+
+@media screen and (max-width: 853px) {
+    // ERROR PAGES
+    .error-page-container {
+        flex-direction: column;
+    }
+
+    .error-page-container div.section:first-child {
+        border-right: none;
+    }
+
+    .error-page-container div.section:last-child {
+        margin-top: 20px;
+    }
+
+    .error-page-container .error-page-code {
+        margin-top: $_20_SPACING_SIZE;
+        font-size: 70px;
+        font-weight: 500;
+    }
+
+    .error-page-container .error-page-buttons {
+        margin: 20px 0 5px 0;
+    }
+
+    // BUTTONS
+    button,
+    .button {
+	    padding: 10px 13px;
+    }
+
+    .page-content {
+        padding: 10px;
+    }
+}

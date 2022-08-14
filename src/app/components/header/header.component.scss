@@ -1,0 +1,70 @@
+@import "../../../variables.scss";
+
+// DESKTOP HEADER STYLING
+.header-container .desktop-header-container {
+    display: flex;
+    flex-direction: row;
+    border-bottom: $BORDER;
+    align-items: center;
+    padding: $_10_SPACING_SIZE $_20_SPACING_SIZE;
+    background: $WHITE_COLOR;
+    gap: $_20_SPACING_SIZE;
+}
+
+.header-container .desktop-header-container .header-logo-container {
+    height: 25px;
+    width: 25px;
+}
+
+// SPACING
+.header-container .header-spacing {
+    flex: 5;
+}
+
+// NAVIGATION LINKS
+.header-container .header-navigation-links {
+    display: flex;
+    align-items: center;
+    gap: $_10_SPACING_SIZE;
+}
+
+.header-container .header-navigation-links a {
+    color: $DARK_COLOR;
+}
+
+.header-container .header-navigation-links a:hover {
+    color: $THEME_COLOR;
+}
+
+// PROFILE LINKS
+.header-container .header-navigation-links a.profile-link {
+    display: inline-flex;
+    align-items: center;
+    gap: $_10_SPACING_SIZE;
+    margin-left: $_10_SPACING_SIZE;
+}
+
+.header-container .header-navigation-links a.profile-link .profile-avatar {
+    height: 40px;
+    width: 40px;
+    background: $GRAY_COLOR;
+    border-radius: 100px;
+    position: relative;
+}
+
+// NOTIFICATION COUNTER
+.header-container .header-navigation-links a.profile-link .profile-avatar::after {
+    content: attr(data-notification-count);
+    position: absolute;
+    top: 0;
+    right: 0;
+    direction: rtl;
+    padding: 0px 4px;
+    background: $THEME_COLOR;
+    border: 1.5px solid $WHITE_COLOR;
+    font-size: calc(.825rem * var(--font-size-multiplier));
+    font-weight: bold;
+    color: $WHITE_COLOR;
+    border-radius: 20px;
+    transform: translateY(-2px);
+}

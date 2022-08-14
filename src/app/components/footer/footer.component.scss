@@ -1,0 +1,67 @@
+@import "../../../variables.scss";
+
+.footer-container {
+    background: $DARK_COLOR;
+    color: $WHITE_COLOR;
+    padding: 40px $_20_SPACING_SIZE;
+}
+
+// FOOTER SITE LOGO
+.footer-container .desktop-footer-container .site-footer-logo {
+    width: 40px;
+    margin-bottom: $_20_SPACING_SIZE;
+}
+
+.footer-container .desktop-footer-container .footer-brand-name {
+    color: $WHITE_COLOR;
+    margin-bottom: $_20_SPACING_SIZE;
+}
+
+// FOOTER NAVIGATION LINKS
+.footer-container .desktop-footer-container .footer-navigation-sections {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-container .desktop-footer-container .footer-navigation-sections .navigation-section-title {
+    margin-bottom: $_20_SPACING_SIZE;
+}
+
+.footer-container .desktop-footer-container .footer-navigation-sections a {
+    display: block;
+    margin: $_10_SPACING_SIZE 0;
+    color: $WHITE_COLOR;
+}
+
+.footer-container .desktop-footer-container .footer-navigation-sections a:hover {
+    color: $THEME_COLOR;
+    cursor: pointer;
+}
+
+// FOOTER BOTTOM LINKS: LEGAL AND SOCIAL LINKS
+.footer-container .footer-bottom-links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: $_10_SPACING_SIZE;
+    border-top: 4px solid $THEME_COLOR;
+}
+
+.footer-container .footer-legal-links,
+.footer-container .footer-social-links {
+    margin-top: $_20_SPACING_SIZE;
+    color: $WHITE_COLOR;
+}
+
+.footer-container .footer-legal-links a:not(:first-child),
+.footer-container .footer-social-links a:not(:last-child) {
+    margin: 0 $_10_SPACING_SIZE;
+}
+
+// FOOTER ATTRIBUTION
+.footer-center-attribution {
+    margin: $_20_SPACING_SIZE 0;
+    text-align: center;
+    opacity: 0.5;
+    font-size: small;
+    font-weight: normal;
+}
