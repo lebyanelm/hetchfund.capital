@@ -6,9 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recently-viewed-egg.component.scss'],
 })
 export class RecentlyViewedEggComponent implements OnInit {
-
+  percentage_funded = .1876
   constructor() { }
 
   ngOnInit() {}
+
+  floor(i) {
+    return i.toFixed(2);
+  }
 
 }

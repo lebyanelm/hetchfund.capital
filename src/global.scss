@@ -38,9 +38,14 @@ body .page-content {
     padding: $_20_SPACING_SIZE;
 }
 
+body .content-wrapper {
+    padding: var(--content-padding);
+}
+
 :root {
     // Utilized for responsive typography design
     --font-size-multiplier: 1;
+    --content-padding: $_10_SPACING_SIZE;
     // Block black/dark mode forcefully
     color-scheme: light only;
 }
@@ -118,13 +123,21 @@ button,
 	border: none;
 	margin: 10px 0;
 	text-transform: uppercase;
-	font-size: small;
 	cursor: pointer;
 	opacity: .9;
 	transition: opacity 300ms ease;
 	letter-spacing: 2px;
     text-decoration: none !important;
     margin-right: 10px;
+}
+
+button > span,
+.button > span,
+button > strong,
+.button > strong,
+button,
+.button {
+    font-size: 0.700rem !important;
 }
 
 button.secondary,
@@ -178,5 +191,12 @@ button.error,
 
     .page-content {
         padding: 10px;
+    }
+}
+
+// LARGER SCREEN SIZES
+@media screen and (min-width: 1570px) {
+    .content-wrapper {
+        padding: $_20_SPACING_SIZE 15% !important;
     }
 }

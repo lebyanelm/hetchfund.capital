@@ -14,9 +14,9 @@ $_20_SPACING_SIZE: 20px;
 $FONT_SIZE: 15px;
 $HEADER_SIZE: 40px;
 $BORDER: 1.5px solid $GRAY_COLOR;
-$BORDER_RADIUS: 2px;
+$BORDER_RADIUS: 0;
 
 // TYPOGRAPHY
-$FONT_FAMILY: "GT Walsheim Pro", "Roboto", sans-serif, arial;
+$FONT_FAMILY:  "GT Walsheim Pro", "Roboto", sans-serif, arial;
 $FONT_FAMILY_MONOSPACED: "Fira Code", monospace, sans-serif, arial;
-$FONT_FAMILY_HEADER: $FONT_FAMILY;
+$FONT_FAMILY_HEADER: "GT Walsheim Pro", $FONT_FAMILY;
