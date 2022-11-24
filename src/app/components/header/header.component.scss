@@ -5,16 +5,21 @@
 .header-container .mobile-header-container {
   display: flex;
   flex-direction: row;
-  border-bottom: $BORDER;
+  // border-bottom: $BORDER;
   align-items: center;
   padding: $_10_SPACING_SIZE $_20_SPACING_SIZE;
   margin-bottom: 80px;
-  background: $WHITE_COLOR;
+  background: $DARK_COLOR;
   gap: $_20_SPACING_SIZE;
   position: fixed;
   top: 0;
   width: 100vw;
   z-index: 1000;
+}
+
+.header-container[hasBackground="false"] .desktop-header-container {
+  background: transparent;
+  border: none;
 }
 
 // MOBILE HEADER VERSION
@@ -32,7 +37,7 @@
 .header-container .mobile-header-container .hamburgar-menu-button span {
   height: 3px;
   width: 30px;
-  background: $DARK_COLOR;
+  background: $WHITE_COLOR;
 }
 
 .header-container .desktop-header-container .header-logo-container,
@@ -54,8 +59,9 @@
 }
 
 .header-container .header-navigation-links a,
+.header-container .header-navigation-links a ion-icon,
 .header-container .header-navigation-links a > span {
-  color: $DARK_COLOR;
+  color: $WHITE_COLOR;
   // font-weight: bold;
 }
 
@@ -74,11 +80,15 @@
 }
 
 .header-container .header-navigation-links a.profile-link .profile-avatar {
-  height: 40px;
-  width: 40px;
+  height: 20px;
+  display: none;
+  width: 20px;
   background: $GRAY_COLOR;
   border-radius: 100px;
+  background-size: cover;
+  background-position: center center;
   position: relative;
+  border: $BORDER;
 }
 
 // NOTIFICATION COUNTER
@@ -99,6 +109,11 @@
   color: $WHITE_COLOR;
   border-radius: 20px;
   transform: translateY(-2px);
+}
+
+.signout-button {
+  color: tomato !important;
+  font-weight: bolder;
 }
 
 @media screen and (max-width: 960px) {

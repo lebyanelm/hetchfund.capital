@@ -4,21 +4,51 @@
   <div class="page-content">
     <div class="content-wrapper">
       <!-- The title of the project / campaign -->
-      <div class="egg-campaign-name header-text-style">
-        DearBuds: Powerful Hi-Fi Speaker with Iconic Design.
+      <div class="categories">
+        <span class="primary-category"
+          >{{this.data?.primary_category.trim()}}</span
+        ><span class="secondary-category"
+          >{{!!this.data?.secondary_category ? " / " :
+          ""}}{{this.data?.secondary_category.trim()}}</span
+        >
       </div>
-      <div class="egg-campaign-description paragraph-text-style">
-        DearBuds: Powerful Hi-Fi Speaker with Iconic Design.
-      </div>
+
+      <div class="egg-campaign-name header-text-style">{{this.data?.name}}</div>
+      <!-- <div class="egg-campaign-description paragraph-text-style">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto
+        doloremque minus ab veniam culpa numquam error in, o.
+      </div> -->
 
       <!-- The thumbnail / video based thumbnail with the campaign stages. -->
       <div class="egg-campaign-thumbnail-stages">
         <!-- The thumbnail / video. -->
         <div class="egg-campaign-thumbnail-container">
-          <div class="egg-campaign-thumbnail" *ngIf="true"></div>
-          <div class="egg-campaign-videoplayer" *ngIf="false"></div>
+          <div
+            class="egg-campaign-thumbnail"
+            *ngIf="!this.data?.presentation_video"
+            [style.background-image]="'url(' + this.data?.thumbnail_url + ')'"
+          ></div>
+          <div
+            class="egg-campaign-videoplayer"
+            *ngIf="this.data?.presentation_video"
+          >
+            <iframe
+              [src]="this.domSanitizer.bypassSecurityTrustResourceUrl(this.data?.presentation_video)"
+              width="100%"
+              height="100%"
+              frameborder="0"
+              scrolling="no"
+              allowfullscreen="true"
+            ></iframe>
+          </div>
           <div class="hetching-progress">
-            <div class="hetching-progress-current"></div>
+            <div
+              class="hetching-progress-current"
+              [style.width]="(this.data?.hetched_funds_perc >= 100
+              ? 100
+              : this.data?.hetched_funds_perc) +
+            '%'"
+            ></div>
           </div>
         </div>
 
@@ -39,45 +69,37 @@
                 <ion-icon name="checkmark-sharp"></ion-icon>
               </div>
               <div class="stage-count-number">1.</div>
-              <div class="stage-name">Planning and Design</div>
+              <div class="stage-name">Concept and planning</div>
             </div>
 
             <div class="stage current" title="Stage in progress.">
               <div class="stage-status"></div>
               <div class="stage-count-number">2.</div>
-              <div class="stage-name">Funding and Capital raising</div>
+              <div class="stage-name">Prototype and confirmation</div>
             </div>
 
             <div class="stage" title="Upcoming.">
               <div class="stage-status"></div>
               <div class="stage-count-number">3.</div>
-              <div class="stage-name">Developing a testing prototype</div>
+              <div class="stage-name">Producing of working product</div>
             </div>
 
             <div class="stage" title="Upcoming.">
               <div class="stage-status"></div>
               <div class="stage-count-number">4.</div>
-              <div class="stage-name">Prototype approval</div>
+              <div class="stage-name">Testing of produced product</div>
             </div>
 
             <div class="stage" title="Upcoming.">
               <div class="stage-status"></div>
               <div class="stage-count-number">5.</div>
-              <div class="stage-name">Producing a working product</div>
+              <div class="stage-name">Shipping to hetchers</div>
             </div>
 
             <div class="stage" title="Upcoming.">
               <div class="stage-status"></div>
               <div class="stage-count-number">6.</div>
-              <div class="stage-name">Final testing</div>
-            </div>
-
-            <div class="stage" title="Upcoming.">
-              <div class="stage-status"></div>
-              <div class="stage-count-number">7.</div>
-              <div class="stage-name">
-                Sending out rewards to hetchers and market
-              </div>
+              <div class="stage-name">Shipping to market areas</div>
             </div>
           </div>
         </div>
@@ -86,37 +108,53 @@
       <div class="tab-selector-section">
         <div class="tabs">
           <a
-            class="tab no-decoration active"
-            href="/campaigns/the-ranchers---JAHaP46MEs?tab=story"
-            >Story</a
+            class="tab no-decoration"
+            [attr.isActiveTab]="this.activeTab === 'about'"
+            (click)="this.setActiveTab('about')"
+            >About</a
           >
           <a
             class="tab no-decoration"
-            href="/campaigns/the-ranchers---JAHaP46MEs?tab=challenges"
-            >Challenges</a
+            [attr.isActiveTab]="this.activeTab === 'challenges'"
+            (click)="this.setActiveTab('challenges')"
+            >Challenges & Risks</a
           >
           <a
             class="tab no-decoration"
-            href="/campaigns/the-ranchers---JAHaP46MEs?tab=community"
-            >Community</a
+            [attr.isActiveTab]="this.activeTab === 'community'"
+            (click)="this.setActiveTab('community')"
+            >Community & Discussions</a
           >
           <a
             class="tab no-decoration"
-            href="/campaigns/the-ranchers---JAHaP46MEs?tab=resources"
-            >Campaign Resources</a
+            [attr.isActiveTab]="this.activeTab === 'resources'"
+            (click)="this.setActiveTab('resources')"
+            >Public Documentation & Resources</a
           >
         </div>
 
         <div class="action-buttons">
-          <button class="theme-color">Fund This Campaign</button>
-          <button class="secondary">Add to Eggmarked</button>
+          <a
+            class="button theme-color"
+            [href]="'contracts/' + this.data?.key + '/commitment'"
+            >Fund this contract</a
+          >
+          <button
+            [class]="'secondary ' + (this.isbookmarked ? ' danger' : '')"
+            (click)="this.bookmark()"
+          >
+            {{this.isbookmarked ? "Remove bookmark" : "Add bookmark"}}
+          </button>
         </div>
       </div>
 
       <div class="bottom-body-section">
         <!-- View of the currently opened Tab. -->
         <div class="selected-tab-view">
-          <div class="story-tab paragraph-text-style">
+          <div
+            class="story-tab paragraph-text-style tab-view"
+            *ngIf="this.activeTab === 'about'"
+          >
             <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
               Doloribus qui mollitia minima sunt maiores molestias debitis natus
@@ -153,6 +191,16 @@
               temporibus sunt quae ab, reiciendis id molestias.
             </p>
           </div>
+
+          <div class="challenges-tab" *ngIf="this.activeTab === 'challenges'">
+            Challenges
+          </div>
+          <div class="community-tab" *ngIf="this.activeTab === 'community'">
+            <app-comments-section></app-comments-section>
+          </div>
+          <div class="resources-tab" *ngIf="this.activeTab === 'resources'">
+            Resources
+          </div>
         </div>
 
         <!-- Stats and Information of the campaign egg. -->
@@ -160,25 +208,54 @@
           <!-- Statistics of the egg campaign funding. -->
           <div class="campaign-statistics">
             <div class="statistic">
-              <div class="graphbars">
-                <span class="filled"></span> <span class="filled"></span>
-                <span></span>
+              <div
+                [class]="'graphbars ' + (this.data?.hetched_funds_perc > 0 ? (this.data?.hetched_funds_perc >= 25 ? (this.data?.hetched_funds_perc >= 50 ? (this.data?.hetched_funds_perc >= 75 ? 'success-color': '') : 'warning-color') : 'danger-color'): '')"
+              >
+                <!-- 1 -->
+                <span
+                  [class]="this.data?.hetched_funds_perc > 0 ? 'filled': ''"
+                ></span>
+                <span
+                  [class]="this.data?.hetched_funds_perc >= 25 ? 'filled': ''"
+                ></span>
+
+                <!-- 2 -->
+                <span
+                  [class]="this.data?.hetched_funds_perc >= 50 ? 'filled': ''"
+                ></span>
+                <span
+                  [class]="this.data?.hetched_funds_perc >= 75 ? 'filled': ''"
+                ></span>
+
+                <!-- 3 -->
+                <span
+                  [class]="this.data?.hetched_funds_perc > 75 ? 'filled': ''"
+                ></span>
+                <span
+                  [class]="this.data?.hetched_funds_perc >= 100 ? 'filled': ''"
+                ></span>
               </div>
-              <div class="name">Hetching Strength</div>
+              <div class="name">Networth</div>
             </div>
 
             <div class="statistic">
-              <span class="value header-text-style smaller">ZAR 495,322</span>
-              <div class="name">Funds Hetched</div>
+              <span class="value header-text-style smaller"
+                >{{this.currencyResolver.translate(this.data?.hetched_funds)}}</span
+              >
+              <div class="name">Hetched</div>
             </div>
 
             <div class="statistic">
-              <span class="value header-text-style smaller">ZAR 100,000</span>
+              <span class="value header-text-style smaller"
+                >{{this.currencyResolver.translate(this.data?.hetching_goal)}}</span
+              >
               <div class="name">Goal</div>
             </div>
 
             <div class="statistic">
-              <span class="value header-text-style smaller">5,322</span>
+              <span class="value header-text-style smaller"
+                >{{this.data?.hetched_funds / 2}}</span
+              >
               <div class="name">Hetchers</div>
             </div>
           </div>
@@ -199,16 +276,24 @@
           <div class="egg-campaign-curator">
             <div class="header-text-style small">Curators</div>
             <div class="curator">
-              <div class="avatar-container"><div class="avatar"></div></div>
+              <div class="avatar-container">
+                <div
+                  class="avatar"
+                  [style.background-image]="'url(https://avatars.dicebear.com/api/pixel-art-neutral/' + this.data?.curator.username + '.svg)'"
+                ></div>
+              </div>
               <div class="curator-details">
                 <div class="name">
-                  <a href="/hetcher/nextuft">Nextuft Technologies</a> ✱
+                  <a [href]="'/hetcher/' + this.data?.curator.username"
+                    >{{this.data?.curator.name}}</a
+                  >
+                  ■
                   <a href=""
                     >Following <ion-icon name="checkmark-sharp"></ion-icon
                   ></a>
                 </div>
                 <div class="curator-egg-campaign-role">
-                  Electronics and Technology
+                  @{{this.data?.curator.username}}
                 </div>
                 <!-- The role the curator has in the egg. -->
               </div>
@@ -216,31 +301,36 @@
           </div>
 
           <!-- Category listings defined in the campaign. -->
-          <div class="egg-campaign-categories-list">
-            <div class="header-text-style small">Tags</div>
-            <div class="categories">
-              <a href="">Electronics</a>
-              <a href="">Technology</a>
-              <a href="">Innovation</a>
-              <a href="">Safety</a>
-              <a href="">Travelling</a>
-              <a href="">Wellbeing</a>
-            </div>
-          </div>
+          <!-- <div class="egg-campaign-categories-list">
+            <div class="header-text-style small">Categories</div>
+
+          </div> -->
         </div>
       </div>
 
       <div class="related-egg-campaigns">
-        <div class="header-text-style">Related</div>
-        <div class="paragraph-text-style">
+        <div
+          class="header-text-style"
+          *ngIf="this.isLoadingRelated == false && this.related.length != 0"
+        >
+          Other related companies
+        </div>
+        <div class="paragraph-text-style" *ngIf="this.related.length > 0">
           With keywords of this campaign here are related eggs.
         </div>
 
-        <div class="page-eggs-layout">
-          <app-egg></app-egg>
-          <app-egg></app-egg>
-          <app-egg></app-egg>
-          <app-egg></app-egg>
+        <div
+          class="paragraph-text-style text-loader"
+          *ngIf="this.isLoadingRelated"
+        >
+          Loading related
+        </div>
+
+        <div class="page-eggs-layout" *ngIf="this.related.length > 0">
+          <app-egg
+            *ngFor="let related of this.related"
+            [data]="related"
+          ></app-egg>
         </div>
       </div>
     </div>

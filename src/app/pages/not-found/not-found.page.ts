@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { IEgg } from 'src/app/interfaces/IEgg';
+import { EggService } from 'src/app/services/egg.service';
+import { TitleService } from 'src/app/services/title.service';
 
 @Component({
   selector: 'app-not-found',
@@ -14,7 +17,16 @@ export class NotFoundPage implements OnInit {
   error_message =
     'We are experiencing \
                 difficulties handling your request at the moment.';
-  constructor(public route: ActivatedRoute, public title: Title) {
+
+  // Incase the user hit a deadend
+  isLoadingRecommended = true;
+  recommened: IEgg[] = [];
+
+  constructor(
+    public route: ActivatedRoute,
+    public titleService: TitleService,
+    private eggsService: EggService
+  ) {
     // Grab error code from the navigation params
     let navParamsErrorCode = this.route.snapshot.paramMap.get('error_code');
     if (!isNaN(Number(navParamsErrorCode)))
@@ -39,12 +51,18 @@ export class NotFoundPage implements OnInit {
                           sure you used proper instructions.';
     }
 
-    this.title.setTitle(this.error_title + ' — Hetchfund');
+    this.titleService.onTitleChange.next(this.error_title + ' — Hetchfund');
   }
 
   goBack(): void {
     window.history.back();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isLoadingRecommended = true;
+    // this.eggsService.recommended(2).then((recommened: IEgg[]) => {
+    //   this.isLoadingRecommended = false;
+    //   this.recommened = recommened;
+    // });
+  }
 }

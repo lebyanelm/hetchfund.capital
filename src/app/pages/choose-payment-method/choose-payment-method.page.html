@@ -1,0 +1,83 @@
+<ion-content>
+  <app-header [hasBackground]="true"></app-header>
+
+  <div class="page-content with-pattern">
+    <!-- <div class="page-header">
+      <a class="page-logo" href="/"><img src="/assets/icon.svg" alt="" /></a>
+    </div> -->
+
+    <div class="content-wrapper split bordered">
+      <div class="left-side">
+        <div class="commitment-wrapper">
+          <i class="header-text-style page-name"
+            >Choose a payment method to fullfil the commitment.<br />
+          </i>
+        </div>
+      </div>
+
+      <div class="right-side">
+        <div class="payment-methods-wrapper">
+          <div class="header-text-style small">Your cards</div>
+          <br />
+
+          <div
+            class="payment-method"
+            *ngFor="let paymentMethod of this.paymentMethods"
+            (click)="selectPaymentMethod(paymentMethod._id)"
+            [attr.isSelected]="this.selectedPaymentId === paymentMethod._id"
+          >
+            <div class="payment-method-details">
+              <i class="payment-method-owner">{{paymentMethod.holder}}</i>
+              <div>
+                <div class="payment-method-code">
+                  {{paymentMethod.number}} {{paymentMethod.is_default ?
+                  "(Default)" : ""}}
+                </div>
+              </div>
+            </div>
+
+            <div class="payment-method-credentials">
+              <i class="payment-method-cvv">***/*</i>
+              <div class="payment-method-exp paragraph-text-style">
+                {{paymentMethod.exp_month}}/{{paymentMethod.exp_year}}
+              </div>
+            </div>
+
+            <div class="selection-radio">
+              <div
+                class="selection-state"
+                [attr.isSelected]="this.selectedPaymentId === paymentMethod._id"
+              ></div>
+            </div>
+          </div>
+
+          <br />
+          <a
+            class="button secondary"
+            [href]="'hetcher/'+ this.sessionService.data?.username +'/preferences/payments/add-method?commitment_key=' + this.contract_key + 'commitment_amount=' + this.commitment_amount"
+            >Add another card method</a
+          >
+        </div>
+
+        <div class="separator"></div>
+
+        <!-- Listed crypto wallets -->
+        <div class="header-text-style small">Connected wallets</div>
+        <a class="button secondary">Connect a crypto wallet</a>
+
+        <div class="separator"></div>
+        <button>Confirm this commitment</button>
+      </div>
+    </div>
+
+    <div class="disclaimers">
+      <div class="paragraph-text-style">
+        All transactions are secured and safe processed with, Peach Payments.
+      </div>
+      <div class="policies-anchors">
+        <a href="">Our payment policy</a>
+        <a href="">Our third-party disclosures</a>
+      </div>
+    </div>
+  </div>
+</ion-content>

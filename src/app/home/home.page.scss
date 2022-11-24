@@ -1,3 +1,5 @@
+@import "../../variables.scss";
+
 #container {
   text-align: center;
 
@@ -24,4 +26,32 @@
 
 #container a {
   text-decoration: none;
+}
+
+// FUNDING STATISTICS
+.funding-statistics {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: $_20_SPACING_SIZE;
+  padding: $_20_SPACING_SIZE 0;
+}
+
+.funding-statistics .statistic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $_20_SPACING_SIZE;
+  background: $WHITE_COLOR;
+  gap: $_5_SPACING_SIZE;
+}
+
+.funding-statistics .statistic .name {
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 0.8rem;
+}
+
+.funding-statistics .statistic .value {
+  font-size: 1.5rem;
+  font-weight: 900;
 }

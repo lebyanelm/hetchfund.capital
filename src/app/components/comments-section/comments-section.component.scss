@@ -1,0 +1,51 @@
+@import "../../../variables.scss";
+
+// DISCUSSIONS
+.comments-section-container .discussions {
+  padding: $_10_SPACING_SIZE 0 $_20_SPACING_SIZE 0;
+}
+
+.comments-section-container .discussions .discussion {
+  display: flex;
+  margin-bottom: $_20_SPACING_SIZE;
+}
+
+.discussions .discussion .profile-avatar {
+  height: 40px;
+  width: 40px;
+  background: #ddd;
+  border-radius: 100px;
+  margin: 0 $_10_SPACING_SIZE 0 0;
+}
+
+// COMMENTER DETAILS
+.discussions .discussion .discussion-commenter-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.discussions .discussion .discussion-commenter-details .commenter-name {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.discussions .discussion .discussion-message {
+  padding: $_10_SPACING_SIZE 0 $_5_SPACING_SIZE 0;
+  margin-bottom: $_5_SPACING_SIZE;
+  border-bottom: $BORDER;
+}
+
+// DISCUSSION ACTIONS
+.discussion-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.discussion-actions > a {
+  font-weight: bold;
+}
+
+.discussion-comments {
+  margin-top: $_20_SPACING_SIZE;
+}

@@ -18,3 +18,43 @@
   display: flex;
   opacity: 1;
 }
+
+.toast-messages-container {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  padding: $_20_SPACING_SIZE 0;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000000000;
+  user-select: none !important;
+}
+
+.toast-messages-container .toast-message {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $_10_SPACING_SIZE $_20_SPACING_SIZE;
+  width: 100%;
+  background: $DARK_COLOR;
+  color: $WHITE_COLOR;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5);
+  border-radius: $BORDER_RADIUS;
+  font-weight: 600;
+}
+
+.toast-messages-container .toast-message:not(:last-child) {
+  margin-bottom: $_10_SPACING_SIZE;
+}
+
+.toast-messages-container .toast-message .message {
+  flex: 1;
+}
+
+.toast-messages-container .toast-message .close-button {
+  padding: 10px;
+  transform: translateX(10px);
+  cursor: pointer;
+}

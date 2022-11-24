@@ -4,8 +4,20 @@
   <div class="page-content">
     <!-- Section seperator -->
     <section class="content-wrapper">
-      <div class="header-text-style">
-        {{isFound == true ? "Hetcher" : "Hetcher profile not found."}}
+      <div *ngIf="this.isLoading">
+        <div class="header-text-style">Hetcher profile</div>
+        <span class="paragraph-text-style text-loader"
+          >Loading hetcher profile</span
+        >
+        <br />
+      </div>
+
+      <div *ngIf="!this.isLoading && !this.isFound">
+        <div class="header-text-style">Hetcher profile not found</div>
+        <span class="paragraph-text-style"
+          >Seems we don't have the hetcher profile in record.</span
+        >
+        <br />
       </div>
 
       <div class="hetcher-information-container" *ngIf="isFound">
@@ -13,16 +25,53 @@
           <div
             class="hetcher-avatar"
             [style]="'background-image: url(' + this.hetcher?.profile_image + ')'"
-          ></div>
+            [attr.isChangable]="this.hetcher?.username === this.sessionService.data?.username"
+            (click)="this.chooseNewAvatarFile()"
+          >
+            <span
+              *ngIf="this.hetcher?.username === this.sessionService.data?.username"
+              >Change</span
+            >
+          </div>
 
           <div class="hetcher-minimal-details">
-            <div class="hetcher-name header-text-style smaller">
+            <div
+              class="hetcher-name header-text-style smaller"
+              [contentEditable]="this.isEditingProfile"
+            >
               {{this.hetcher?.display_name}}
+
+              <!-- Toggle editing and changing the profile. -->
+              <button
+                class="secondary"
+                title="Edit public information about your profile."
+                (click)="this.showEditProfileModal()"
+                *ngIf="this.hetcher?.username === this.sessionService.data?.username"
+              >
+                Edit my profile
+              </button>
+
+              <!-- Following and unfollowing other hetchers. -->
+              <button
+                class="secondary"
+                [title]="!this.sessionService.data?.follows?.includes(this.hetcher._id) ? 'Get updates from hetcher campaigns' : 'Stop getting updates from this hetcher'"
+                [attr.isUnfollow]="this.sessionService.data?.follows?.includes(this.hetcher._id)"
+                (click)="this.followHetcher()"
+                *ngIf="this.hetcher?.username !== this.sessionService.data?.username"
+              >
+                {{!this.sessionService.data?.follows?.includes(this.hetcher._id)
+                ? "Follow" : "Unfollow"}}
+              </button>
             </div>
             <div class="hetcher-title">
-              <span>{{this.hetcher?.occupation}}</span>
-              {{this.hetcher?.occupation && (this.hetcher?.nationality ||
-              this.hetcher?.home_city) ? "in" : "" }}
+              <span
+                >{{this.hetcher?.occupation}}{{this.hetcher?.is_collective ? "s"
+                : ""}}</span
+              >
+              <i
+                >{{this.hetcher?.occupation && (this.hetcher?.nationality ||
+                this.hetcher?.home_city) ? " in " : "" }}</i
+              >
               <span
                 >{{this.hetcher?.nationality}}{{this.hetcher?.nationality &&
                 this.hetcher?.home_city ? "," : "" }}
@@ -34,17 +83,17 @@
           <div class="hetcher-follow-stats">
             <div class="hetcher-followers">
               <div class="value">{{this.hetcher?.followers.length}}</div>
-              <div class="name"><span>Followers</span></div>
+              <div class="name"><a>Followers</a></div>
             </div>
             <div class="hetcher-followers">
               <div class="value">{{this.hetcher?.follows.length}}</div>
-              <div class="name"><span>Following</span></div>
+              <div class="name"><a>Following</a></div>
             </div>
             <div class="hetcher-followers">
               <div class="value">
                 {{this.hetcher?.eggs_funded.length}}{{this.determineLevelEnding(this.hetcher?.eggs_funded.length)}}
               </div>
-              <div class="name"><span>Level</span></div>
+              <div class="name"><a>Reputation</a></div>
             </div>
           </div>
         </div>
@@ -62,27 +111,24 @@
         <div class="page-eggs">
           <div class="tabs">
             <a class="header-text-style colored small no-decoration">
-              {{this.hetcher?.eggs.length > 0 ? "Curated campaigns" : "No
-              curated campaigns yet."}}
+              {{this.hetcher?.eggs.length > 0 ? "Curated contracts. " : "No\
+              curated contracts yet."}}
               <span> {{this.hetcher?.eggs.length}}</span>
             </a>
 
             <a class="header-text-style small no-decoration">
-              Bookmarked campaigns
+              Bookmarked contracts.
               <span> {{this.hetcher?.eggs_bookmarked.length}}</span>
             </a>
 
             <a class="header-text-style small no-decoration">
-              Supporting campaigns
+              Supporting contracts.
               <span> {{this.hetcher?.eggs_funded.length}}</span>
             </a>
           </div>
 
           <div class="page-eggs-layout" *ngIf="this.hetcher?.eggs.length > 0">
-            <app-egg
-              *ngFor="let egg of this.hetcher?.eggs"
-              [eggkey]="egg"
-            ></app-egg>
+            <app-egg *ngFor="let egg of this.hetcher?.eggs"></app-egg>
           </div>
         </div>
       </div>

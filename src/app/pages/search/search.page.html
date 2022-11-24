@@ -3,26 +3,58 @@
 
   <div class="page-content">
     <!-- Section seperator -->
-   <section class="content-wrapper">
-    <div class="header-text-style">Search</div>
-    <textarea
-      name="search"
-      placeholder="Enter a search word to find campaigns you're looking for..."
-      (keyup)="search(SearchInput.value)"
-      #SearchInput></textarea>
+    <section class="content-wrapper">
+      <div class="header-text-style">Search our farmhouse</div>
+      <input
+        name="search"
+        placeholder="Enter search keywords..."
+        [value]="this.searchKey"
+        (keyup)="this.searchKey = SearchInput.value"
+        #SearchInput
+      />
 
-    <section class="search-results" *ngIf="searchKey.length">
-      <br>
-      <div class="paragraph-text-style">Showing search results for <strong>"{{searchKey}}"</strong></div>
-      <div class="page-eggs-layout">
-        <app-egg></app-egg>
-        <app-egg></app-egg>
-        <app-egg></app-egg>
-        <app-egg></app-egg>
+      <section class="search-results" *ngIf="searchKey.length">
+        <br />
+        <div
+          class="paragraph-text-style"
+          *ngIf="!this.isLoadingResults && this.searchResults.length"
+        >
+          Showing {{this.searchResultsPages * 10}} search
+          result{{this.searchResults.length > 1 ? "s" : ""}} for
+          <strong>"{{searchKey}}"</strong>
+        </div>
+
+        <div
+          class="paragraph-text-style text-loader"
+          *ngIf="this.isLoadingResults"
+        >
+          Fetching relevent resutls
+        </div>
+
+        <div
+          class="paragraph-text-style"
+          *ngIf="!this.isLoadingResults && !this.searchResults.length"
+        >
+          No search results found for <strong>"{{searchKey}}"</strong>
+        </div>
+
+        <div class="page-eggs-layout">
+          <app-egg
+            *ngFor="let result of this.searchResults"
+            [data]="result"
+          ></app-egg>
+        </div>
+      </section>
+
+      <div class="pagination-links">
+        <a href="" class="no-decoration" *ngFor="let page of this.totalResults"
+          >{{page}}</a
+        >
+
+        <a>Next</a>
       </div>
     </section>
-   </section>
   </div>
-  
+
   <app-footer></app-footer>
 </ion-content>

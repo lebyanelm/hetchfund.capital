@@ -4,14 +4,43 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'campaigns',
+    redirectTo: 'contracts',
     pathMatch: 'full',
   },
   {
-    path: 'campaigns',
+    path: 'contracts',
     loadChildren: () =>
       import('./home/home.module').then((m) => m.HomePageModule),
   },
+  {
+    path: 'contracts/view-history',
+    loadChildren: () =>
+      import('./pages/view-history/view-history.module').then(
+        (m) => m.ViewHistoryPageModule
+      ),
+  },
+  {
+    path: 'contracts/:contract_key',
+    loadChildren: () =>
+      import('./pages/egg-campaign/egg-campaign.module').then(
+        (m) => m.EggCampaignPageModule
+      ),
+  },
+  {
+    path: 'contracts/:contract_key/commitment',
+    loadChildren: () =>
+      import('./pages/choose-pledge-options/choose-pledge-options.module').then(
+        (m) => m.ChoosePledgeOptionsPageModule
+      ),
+  },
+  {
+    path: 'contracts/:contract_key/commitment/choose-method',
+    loadChildren: () =>
+      import('./pages/choose-payment-method/choose-payment-method.module').then(
+        (m) => m.ChoosePaymentMethodPageModule
+      ),
+  },
+
   {
     path: 'create-account',
     loadChildren: () =>
@@ -24,13 +53,7 @@ const routes: Routes = [
         (m) => m.NotFoundPageModule
       ),
   },
-  {
-    path: 'campaigns/:egg_key',
-    loadChildren: () =>
-      import('./pages/egg-campaign/egg-campaign.module').then(
-        (m) => m.EggCampaignPageModule
-      ),
-  },
+
   {
     path: 'search',
     loadChildren: () =>
@@ -44,7 +67,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'categories/:categoryName',
+    path: 'categories/:category_name',
     loadChildren: () =>
       import('./pages/selected-category/selected-category.module').then(
         (m) => m.SelectedCategoryPageModule
@@ -61,10 +84,17 @@ const routes: Routes = [
       import('./pages/hetcher/hetcher.module').then((m) => m.HetcherPageModule),
   },
   {
-    path: 'payments/add-method',
+    path: 'hetcher/:username/preferences/payments/add-method',
     loadChildren: () =>
       import('./pages/add-payment-method/add-payment-method.module').then(
         (m) => m.AddPaymentMethodPageModule
+      ),
+  },
+  {
+    path: 'choose-interests',
+    loadChildren: () =>
+      import('./pages/choose-interests/choose-interests.module').then(
+        (m) => m.ChooseInterestsPageModule
       ),
   },
   {

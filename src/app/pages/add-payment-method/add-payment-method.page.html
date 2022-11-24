@@ -9,80 +9,69 @@
           <div class="header-text-style">Add a payment method</div>
 
           <br />
-          <div class="section-title-style">Use instant methods</div>
+          <div class="section-title-style">Using other methods</div>
           <div class="instant-methods">
-            <div class="instant-payment-method" data-selected="true">
-              <div class="payment-method-logo">
-                <ion-icon name="logo-paypal"></ion-icon>
-              </div>
-              <div class="payment-method-name">Via PayPal</div>
+            <div class="button" [style.background]="'#003087'">
+              Cash-payments with PayPal
             </div>
 
-            <div class="instant-payment-method">
-              <div class="payment-method-logo">
-                <ion-icon name="logo-google"></ion-icon>
-              </div>
-              <div class="payment-method-name">Via Google</div>
-            </div>
+            <div class="button secondary">Crypto-cash with Coinbase</div>
           </div>
 
           <div class="separator" title="Use credit card method"></div>
 
           <div class="formfields credit-card-formfield">
-            <div class="formfield">
-              <label class="section-title-style" for="">Card name</label>
-              <input
-                type="tel"
-                class="input-field"
-                name="card-name"
-                placeholder="eg. My primary card"
-              />
-            </div>
-
-            <div class="formfield">
-              <label class="section-title-style" for="">Card number</label>
-              <input
-                type="tel"
-                class="input-field"
-                name="card-number"
-                placeholder="eg. 1234 1234 1234 1234"
-              />
-            </div>
-
-            <div class="split-formfields">
+            <div class="formfields">
               <div class="formfield">
-                <label class="section-title-style" for=""
-                  >Expiry month and year</label
-                >
+                <label for="">Card holder</label>
+                <input type="text" placeholder="eg. MR YM DAVIS" />
+              </div>
+            </div>
+            <div class="formfields">
+              <div class="formfield">
+                <label for="">Card number</label>
                 <input
-                  type="tel"
-                  class="input-field"
-                  placeholder="eg. 04/44"
-                  name="card-expiry"
+                  type="text"
+                  placeholder="eg. 4200000000000001"
+                  #CardNumber
                 />
               </div>
-
-              <div class="formfield">
-                <label class="section-title-style" for="">Security code</label>
-                <input type="tel" class="input-field" placeholder="eg. 434" />
+            </div>
+            <div class="split-formfields">
+              <div class="formfields">
+                <div class="formfield">
+                  <label for="">Expiry date</label>
+                  <input type="text" placeholder="eg. YYYY/MM" />
+                </div>
+              </div>
+              <div class="formfields">
+                <div class="formfield">
+                  <label for="">Security code / CVV</label>
+                  <input type="text" placeholder="eg. 434/3" />
+                </div>
               </div>
             </div>
           </div>
 
-          <button>Approve and Add payment method</button>
+          <button (click)="this.addPaymentMethod()">
+            Approve and Add payment method
+          </button>
         </div>
 
         <!-- Disclaimers about adding payment methods -->
         <div class="payments-disclaimer">
           <div class="section-title-style">Payments disclaimer</div>
-          <span class="paragraph-text-style"
-            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
-            sint excepturi natus quia distinctio minima totam, et ipsum ab iste
-            sunt laboriosam similique! Sapiente ducimus asperiores quas totam
-            sed quidem nam, adipisci dolorum temporibus iure fugiat commodi nisi
-            eligendi dolore ut alias doloribus rem corrupti quos aut voluptatem
-            distinctio placeat.</span
-          >
+          <div class="paragraph-text-style disclaimer-text">
+            We offer a range of payments so you can be able to reach-out to
+            assisting companies hosted with us. Payments made through
+            <b>PayPal</b> and <b>Coinbase</b> are governed by their terms and
+            conditions of the respective payment processors, although any issues
+            can be raised through us. Credit card payments are processed with
+            the help of <b>PeachPayments</b>, respective terms and conditions
+            can be found on their website. More payment processor information is
+            listed in our policies, all payments are processed securely and
+            safely.
+          </div>
         </div>
       </div>
     </div>

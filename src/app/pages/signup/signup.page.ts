@@ -4,7 +4,9 @@ import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { IBackendResponse } from 'src/app/interfaces/IBackendResponse';
 import { SessionService } from 'src/app/services/session.service';
+import { TitleService } from 'src/app/services/title.service';
 import { environment } from 'src/environments/environment';
+import * as superagent from 'superagent';
 
 @Component({
   selector: 'app-signup',
@@ -22,7 +24,7 @@ export class SignupPage implements OnInit {
   errorMessage: string;
 
   constructor(
-    private title: Title,
+    private titleService: TitleService,
     private http: HttpClient,
     private session: SessionService,
     private router: Router
@@ -37,20 +39,28 @@ export class SignupPage implements OnInit {
       password: this.passwordField.nativeElement.value,
     };
 
-    this.http
-      .post(environment.accounts + '/', credentials)
-      .subscribe((response: IBackendResponse<any>) => {
+    // Send a request to the accounts backend to create a hetcher.
+    superagent
+      .post(environment.accounts + '/')
+      .send(credentials)
+      .end((_, response) => {
         this.isLoading = false;
-        if (response.status_code == '200') {
-          this.session.setToken(response.data.jwt);
-          this.router.navigate(['/']);
+        if (response.statusCode == 200) {
+          this.isLoading = false;
+          this.session.setToken(response.body.data.jwt);
+          this.router.navigate(['/choose-interests']);
         } else {
-          this.errorMessage = response.reason || response.status_message;
+          this.errorMessage = [
+            response.body.status_message,
+            ' by ',
+            response.body.cluster_pod,
+            '. Please make necessary changes and try again, if error persists contact us.',
+          ].join('');
         }
       });
   }
 
   ngOnInit() {
-    this.title.setTitle('Create an account — Hetchfund');
+    this.titleService.onTitleChange.next('Create an account — Hetchfund');
   }
 }

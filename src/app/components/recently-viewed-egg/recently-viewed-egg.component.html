@@ -1,23 +1,35 @@
-<div class="recently-viewed-egg-container content-wrapper">
+<div
+  class="recently-viewed-egg-container content-wrapper"
+  *ngIf="this.has_recently_viewed && !this.is_closed"
+>
   <!-- Curator section -->
   <div class="egg-container">
-    <div class="curator-section">
+    <!-- <div class="curator-section">
       <div class="curator-avatar"></div>
-      <div class="curator-name header-text-style smaller">Gregory</div>
+      <div class="curator-name header-text-style smaller">
+      </div>
       <div class="curator-selected-oganisation paragraph-text-style small">
-        Macbang Industries
+        {{ this.data?.curator?.name || "Not specified" }}
       </div>
       <a class="curator-follow paragraph-text-style small">Follow</a>
-    </div>
+    </div> -->
 
     <!-- Egg information -->
     <div class="egg">
       <div class="egg-container-thumbnail-container">
-        <div class="egg-container-thumbnail"></div>
+        <div
+          class="egg-container-thumbnail"
+          [style.background-image]="'url(' + this.data?.thumbnail_url + ')'"
+        ></div>
       </div>
       <div class="egg-container-details">
-        <a class="egg-container-name header-text-style small"
-          >Gamebox: Self-balanced gamepad, snack holder.</a
+        <div class="section-title paragraph-text-style">
+          Recently viewed contract
+        </div>
+        <a
+          class="egg-container-name header-text-style small"
+          [href]="'/contracts/' + this.data?.key"
+          >{{ this.data?.name }}</a
         >
         <div class="egg-container-description paragraph-text-style">
           A self-balanced gamepad and snack holder tray without spills and
@@ -26,7 +38,7 @@
 
         <a
           class="paragraph-text-style small"
-          href="/recently-viewed"
+          href="/contracts/view-history"
           class="egg-container-link"
           >Show other recently viewed</a
         >
@@ -47,36 +59,47 @@
     <div class="egg-perfomance-progress">
       <div
         class="egg-perfomance-current"
-        [style]="'width: ' + this.percentage_funded * 100 + '%'"
+        [style]="
+          'width: ' +
+          (this.data?.hetched_funds_perc >= 100
+            ? 100
+            : this.data?.hetched_funds_perc) +
+          '%'
+        "
       ></div>
     </div>
 
     <div class="paragraph-text-style uppercase small">
       <span class="egg-perfomance-funded-percentage"
-        >{{ floor(this.percentage_funded * 100) }}%</span
+        >{{ this.data?.hetched_funds_perc }}%</span
       >
-      out of
-      <span
-        ><span class="currency">{{ this.currencyResolver.currency }}</span>
-        {{ this.floor(this.currencyResolver.value * 120) }}</span
+      OUT OF
+      <span (click)="this.currencyResolver.showCurrencyMenu()">
+        {{ this.currencyResolver.translate(this.data?.hetching_goal) }}</span
       >
       FUNDED | 19 DAYS LEFT
     </div>
 
-    <a class="paragraph-text-style small egg-perfomance-funds-raised"
-      ><span class="currency">{{ this.currencyResolver.currency }}</span>
-      {{ this.floor(this.currencyResolver.value * 40) }} raised in total</a
+    <a
+      class="paragraph-text-style small currency-selectable"
+      (click)="this.currencyResolver.showCurrencyMenu()"
+    >
+      {{ this.currencyResolver.translate(this.data?.hetched_funds) }} raised in
+      total</a
     >
 
     <div class="egg-socials-buttons">
       <button
         class="social-button LinkedIn"
-        (click)="this.loaderService.showLoader()"
+        (click)="this.toastManager.show('This is a movable message. ', false)"
       >
-        Fund this project
+        Fund this contract
       </button>
-      <button class="social-button share-link">
-        Copy the <strong>Share Link</strong>
+      <button
+        class="secondary social-button share-link"
+        (click)="this.toastManager.show('This is a unmovable message. ', true)"
+      >
+        View share box
       </button>
     </div>
   </div>

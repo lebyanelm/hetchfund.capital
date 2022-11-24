@@ -3,17 +3,43 @@
 
   <div class="page-content">
     <!-- Section seperator -->
-   <section class="content-wrapper">
-    <div class="header-text-style">Categories</div>
-    
-    <div *ngFor="let categoryLetter of this.categoryKeys">
-      <div class="letter-separation">{{categoryLetter}}</div>
-      <div class="categories-container">
-        <a class="category" *ngFor="let category of this.categories?.[categoryLetter]" [href]="'/categories/' + category">{{category}}</a>
-      </div>
-    </div>
+    <section class="content-wrapper">
+      <div class="header-text-style">Categories</div>
 
-   </section>
+      <div
+        class="paragraph-text-style danger-color"
+        *ngIf="this.isLoading === false && this.isUnableToLoad"
+      >
+        Failed to load categories from server. Please refresh this page, if
+        error persists contact us.
+      </div>
+
+      <div
+        class="paragraph-text-style danger-color text-loader"
+        *ngIf="this.isLoading === true"
+      >
+        Loading
+      </div>
+
+      <div
+        class="paragraph-text-style danger-color"
+        *ngIf="this.isLoading === false && this.isUnableToLoad === false"
+      >
+        Browsable categories assigned to eggs
+      </div>
+
+      <div *ngFor="let categoryLetter of this.categoryKeys">
+        <div class="letter-separation">{{categoryLetter}}</div>
+        <div class="categories-container">
+          <a
+            class="category"
+            *ngFor="let category of this.categories?.[categoryLetter]"
+            [href]="'/categories/' + category.replace('/', '%20')"
+            >{{category}}</a
+          >
+        </div>
+      </div>
+    </section>
   </div>
   <app-footer></app-footer>
 </ion-content>

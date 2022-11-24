@@ -1,54 +1,73 @@
 <ion-content>
   <app-header></app-header>
-  <div class="page-content centered-content">
-    <div class="formfield">
-      <div class="formfield-header">
-        <div class="header-text-style">Welcome back</div>
-        <span
-          >Continue being part of an economic building platform to better the
-          world.</span
+  <div class="page-content centered-content with-pattern">
+    <div class="formfields account-formfields">
+      <div class="formfields-header">
+        <div class="header-text-style">Signin to your account.</div>
+        <span class="paragraph-text-style"
+          >Welcome back to a purposeful economic building platform.</span
         >
       </div>
 
-      <div class="formfield-fields">
+      <div class="separator" title="Enter fields below"></div>
+
+      <div class="formfield">
+        <label class="section-title-style" for="">Email address</label>
         <input
-          type="text"
-          class="field"
-          placeholder="Your email address"
-          value="lebyane.lm@gmail.com"
+          type="email"
+          class="input-field"
+          name="email"
+          placeholder="eg. aegontechnologies@aegon.com"
           autocomplete="email"
+          (keyup)="this.errorMessage = ''"
           #EmailAddressField
         />
+      </div>
+
+      <div class="formfield">
+        <label class="section-title-style" for="">Password</label>
         <input
           type="password"
-          class="field"
-          placeholder="Choose a password"
-          value="password2"
+          class="input-field"
+          name="password"
+          placeholder="Please enter your password."
           autocomplete="new-password"
+          (keyup)="this.errorMessage = ''"
           #PasswordField
         />
       </div>
 
-      <p class="clause-notice">
-        By logging in to your account with our platform you agree to our terms
-        and conditions that are stated in our
+      <!-- Error message when something goes wrong. -->
+      <p class="danger-text-style bold-text-style" *ngIf="this.errorMessage">
+        {{this.errorMessage}}
+      </p>
+
+      <p class="paragraph-text-style clause-notice">
+        By signing in to your account or using social media login on our
+        platform you agree to our terms and conditions that are stated in our
         <a href="">Terms & Conditions Page.</a>
       </p>
 
       <div class="formfield-buttons">
-        <button #SignInButton (click)="this.signin()">
-          Sign-In to your account
+        <button (click)="this.signin()" [disabled]="this.isLoading">
+          <app-loader [attr.state]="isLoading"></app-loader>
+          Signin to my account
         </button>
+        <a class="button secondary" href="/create-account"
+          >Don't have an account yet</a
+        >
       </div>
 
-      <div class="formfield-social-buttons">
+      <div class="separator" title="Use Social Login"></div>
+
+      <div class="social-buttons">
         <button class="apple">
           <ion-icon name="logo-apple"></ion-icon>
-          Sign in with Apple
+          Continue with an Apple account
         </button>
         <button class="secondary">
           <ion-icon name="logo-google"></ion-icon>
-          Sign in with Google
+          Continue with a Google account
         </button>
       </div>
     </div>

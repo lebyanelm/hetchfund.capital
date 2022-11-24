@@ -1,5 +1,29 @@
 <ion-app>
   <ion-router-outlet></ion-router-outlet>
+  <div class="toast-messages-container">
+    <div
+      class="toast-message"
+      *ngFor="let message of this.toastManager.currentMessages"
+    >
+      <span class="message">{{ message.message }}</span>
+      <div class="close-button">
+        <span class="currency-selectable">Close</span>
+      </div>
+    </div>
+
+    <div class="toast-message" *ngIf="this.toastManager.persistantMessage">
+      <span class="message">{{
+        this.toastManager.persistantMessage.message
+      }}</span>
+      <div class="close-button">
+        <span
+          class="currency-selectable"
+          (click)="this.toastManager.persistantMessage = null"
+          >Close</span
+        >
+      </div>
+    </div>
+  </div>
   <div
     class="whole-winder-loader-container"
     [attr.isLoaderShown]="this.isLoaderShown"

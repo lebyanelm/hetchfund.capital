@@ -1,20 +1,57 @@
-<div class="header-container">
+<div class="header-container" [attr.hasBackground]="this.hasBackground">
   <div class="desktop-header-container">
     <a class="header-logo-container" href="/"
       ><img src="/assets/icon.svg" alt="Hetchfund Logo"
     /></a>
 
     <div class="header-navigation-links">
+      <a href="/create" class="navigation-link">Create a contract</a>
+
       <a href="/categories" class="navigation-link no-decoration"
         >Browse categories</a
       >
-      <a href="/create" class="navigation-link no-decoration"
-        >Create a campaign</a
+
+      <a href="/contracts/view-history" class="navigation-link no-decoration"
+        >View history</a
       >
-      <a class="navigation-link profile-link no-decoration">
+
+      <a
+        class="navigation-link profile-link no-decoration dropdown"
+        #CurrencyDropdownAnchor
+      >
         <span class="profile-name theme-color-style icon-text-style"
-          >Choose base currency <ion-icon name="chevron-down-sharp"></ion-icon>
+          >Choose base currency ({{ this.currencyService.currency }})
+          <ion-icon name="chevron-down-sharp"></ion-icon>
         </span>
+        <div class="dropdown-content">
+          <div
+            class="paragraph-text-style"
+            *ngIf="this.isUnableToLoadCurrencies === true"
+          >
+            Unable to load currencies. Please check your network and re-open
+            this dropdown.
+          </div>
+
+          <div
+            class="paragraph-text-style text-loader"
+            *ngIf="
+              this.isUnableToLoadCurrencies !== true &&
+              this.availableCurrencies.length == 0
+            "
+          >
+            Loading
+          </div>
+
+          <a
+            [attr.data-isselected]="
+              this.currencyService?.currency === currency?.code
+            "
+            (click)="this.currencyService.setCurrency(currency.code, true)"
+            *ngFor="let currency of this.availableCurrencies"
+          >
+            {{ currency.name }} ({{ currency.code }})</a
+          >
+        </div>
       </a>
     </div>
 
@@ -26,21 +63,62 @@
       >
       <!-- When there is an active session -->
       <a
-        [href]="'/hetcher/' + sessionData?.username"
-        class="navigation-link profile-link no-decoration"
+        class="navigation-link profile-link dropdown"
         *ngIf="isSessionActive"
+        #ProfileDropdownAnchor
       >
         <span class="profile-name theme-color-style icon-text-style"
-          >{{ sessionData?.display_name }}
+          ><b>{{ this.sessionService.data?.display_name }}</b>
           <ion-icon name="chevron-down-sharp"></ion-icon>
         </span>
         <span
           class="profile-avatar"
           [style]="
-            'background-image: url(' + this.sessionData?.profile_image + ')'
+            'background-image: url(' +
+            this.sessionService.data?.profile_image +
+            ')'
           "
-          [data-notification-count]="this.sessionData?.notifications.length"
+          [attr.data-notification-count]="
+            this.sessionService.data?.notifications.length
+          "
         ></span>
+
+        <div class="dropdown-content">
+          <a
+            class="no-decoration"
+            [href]="'/hetcher/' + this.sessionService.data?.username"
+            >View your profile
+            <b> ({{ this.sessionService.data?.username }})</b></a
+          >
+          <a
+            class="no-decoration"
+            [href]="
+              '/hetcher/' +
+              this.sessionService.data?.username +
+              '?focus_section=eggs'
+            "
+            >Curated campaigning eggs</a
+          >
+          <a
+            class="no-decoration"
+            href="'/notifications/' + this.sessionData?.username + '?focus_section=eggs'"
+            >Messages and notifications-center
+            <b>({{ this.sessionService.data?.notifications.length }})</b></a
+          >
+          <a class="no-decoration" [href]="'/payments/commitment/'"
+            >Payment history</a
+          >
+          <a
+            class="no-decoration"
+            href="'/settings/' + this.sessionData?.username + '?focus_section=eggs'"
+            >Platform settings and preferences</a
+          >
+          <a
+            class="danger-text-style signout-button"
+            (click)="this.sessionService.removeSession()"
+            >Remove all data and sign out</a
+          >
+        </div>
       </a>
 
       <!-- When there's no session active -->
@@ -48,7 +126,7 @@
         href="/signin"
         class="navigaion-link no-decoration"
         *ngIf="!isSessionActive"
-        >Sign-In</a
+        >Sign-in</a
       >
       <a
         href="/create-account"

@@ -1,0 +1,78 @@
+@import "../../../variables.scss";
+
+// PAYMENT METHOD
+.payment-methods-wrapper {
+  padding: $_20_SPACING_SIZE 0;
+}
+
+.payment-method {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $_20_SPACING_SIZE;
+  background: $WHITE_COLOR;
+  border: $BORDER;
+  margin-bottom: $_10_SPACING_SIZE;
+  border-radius: $BORDER_RADIUS;
+}
+
+.payment-method:last-child {
+  padding-bottom: none !important;
+}
+
+.payment-method .payment-method-details {
+  flex: 0.6;
+}
+
+.payment-method .payment-method-credentials {
+  flex: 0.3;
+}
+
+.payment-method .payment-method-owner,
+.payment-method .payment-method-cvv {
+  display: inline-block;
+  font-weight: 900;
+  margin-bottom: 5px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.payment-method .payment-method-credentials {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.payment-method .payment-method-code,
+.payment-method .payment-method-exp {
+  font-family: "Fira Code", monospace;
+}
+
+// PAYMENT METHOD SELECTION
+.payment-method:hover {
+  cursor: pointer;
+}
+
+.payment-method:hover .payment-method-owner,
+.payment-method:hover .payment-method-cvv {
+  color: $THEME_COLOR;
+}
+
+.payment-method .selection-state {
+  height: 15px;
+  width: 15px;
+  border-radius: 50px;
+  border: $BORDER;
+  border-width: 2px;
+  border-color: $DARK_COLOR;
+}
+
+.payment-method[isSelected="true"] {
+  background: $DARK_COLOR;
+  color: $WHITE_COLOR;
+  border: none;
+}
+
+.payment-method .selection-state[isSelected="true"] {
+  background: $DARK_COLOR;
+}

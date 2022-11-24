@@ -2,20 +2,67 @@
 
 // HETCHER INFORMATION CONTAINER
 .hetcher-information-container {
-  display: grid;
-  grid-template-columns: 0.4fr 0.6fr;
+  display: flex;
   gap: $_20_SPACING_SIZE;
   margin: $_20_SPACING_SIZE 0;
 }
 
+.hetcher-information-container > *:first-child {
+  flex: 0.4;
+}
+
+.hetcher-information-container > *:last-child {
+  flex: 0.6;
+}
+
 // HETCHER AVATAR
 .hetcher-information-container .hetcher-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 100px;
   width: 100px;
   background: $LIGHT_COLOR;
   border-radius: 50px;
   background-size: cover;
   background-position: center center;
+  position: relative;
+  font-weight: 900;
+  color: $WHITE_COLOR;
+  border: $BORDER;
+}
+
+.hetcher-information-container .hetcher-avatar[ischangable="true"] {
+  cursor: pointer;
+}
+
+.hetcher-information-container .hetcher-avatar[ischangable="true"]::after {
+  content: "";
+  position: absolute;
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: transparentize($DARK_COLOR, 0.4);
+  border-radius: 200px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.hetcher-information-container .hetcher-avatar[ischangable="true"] span {
+  position: absolute;
+  z-index: 10;
+}
+
+.hetcher-information-container .hetcher-avatar[ischangable="true"]::after,
+.hetcher-information-container .hetcher-avatar[ischangable="true"] span {
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.hetcher-information-container .hetcher-avatar[ischangable="true"]:hover::after,
+.hetcher-information-container .hetcher-avatar[ischangable="true"]:hover span {
+  opacity: 1;
 }
 
 // THE NAME OF THE HETCHER AND POSITION TITLE
@@ -29,6 +76,49 @@
 .hetcher-information-container .hetcher-follow-stats .name,
 .hetcher-information-container .hetcher-name {
   text-transform: capitalize;
+}
+
+.hetcher-information-container .hetcher-name {
+  display: flex;
+  outline: none;
+  align-items: center;
+  align-self: flex-start;
+  gap: 10px;
+  color: $THEME_COLOR;
+  transition: color, background 300ms ease;
+  cursor: pointer;
+}
+
+.hetcher-information-container .hetcher-name[contenteditable="true"] {
+  border: $BORDER;
+  border-color: $THEME_COLOR;
+  padding: $_10_SPACING_SIZE $_10_SPACING_SIZE;
+}
+
+.hetcher-information-container .hetcher-name span {
+  font-size: small;
+}
+
+.hetcher-information-container .hetcher-name .edit-profile-button {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  color: $DARK_COLOR;
+}
+
+.hetcher-information-container .hetcher-name .edit-profile-button:hover {
+  text-decoration-thickness: 1.5px;
+}
+
+.hetcher-information-container
+  .hetcher-name
+  .edit-profile-button[isunfollow="true"] {
+  color: $DANGER_COLOR;
+}
+
+.hetcher-information-container .hetcher-name ion-icon:hover {
+  color: $THEME_COLOR;
+  opacity: 1;
+  cursor: pointer;
 }
 
 .hetcher-information-container .hetcher-title *,

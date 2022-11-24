@@ -6,11 +6,14 @@ export const environment = {
   production: false,
 
   // TEST: BACKEND SERVICES
-  accounts: "http://localhost:4000/accounts",
-  translator: "http://localhost:4001/translator",
-  payments: "http://localhost:4002/payments",
-  farmhouse: "http://localhost:4003/farmhouse",
-  media_resources: "http://localhost:4004/media-resources",
+  accounts: 'http://localhost:4000/accounts',
+  translator: 'http://localhost:4001/translator',
+  payments: 'http://localhost:4002/payments',
+  farmhouse: 'http://localhost:4003/farmhouse',
+  media_resources: 'http://localhost:4004/media-resources',
+
+  // YOCO KEY
+  YOCO_PUBLIC_KEY: 'pk_test_611663c4bVOW3qD3ffd4',
 };
 
 /*

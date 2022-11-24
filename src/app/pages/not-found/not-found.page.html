@@ -2,11 +2,12 @@
   <div class="error-page-container">
     <div class="section">
       <!-- PLAFTORM LOGO -->
-      <img
-        class="platform-logo"
-        src="/assets/icon.svg"
-        alt="Platform Logo (with Text)"
-      />
+      <a href="/"
+        ><img
+          class="platform-logo"
+          src="/assets/icon.svg"
+          alt="Platform Logo (with Text)"
+      /></a>
 
       <div class="error-page-header">{{error_title}}</div>
       <div class="error-page-title">
@@ -37,18 +38,21 @@
     </div>
     <div class="section">
       <ion-content>
-        <div class="header-text-style">Eggs you might be interested in</div>
-        <div class="paragraph-text-style">
-          Incase you found a dead&mdash;end here are eggs specially selected for
-          you.
-        </div>
+        <div class="header-text-style">Recommended contracts</div>
+        <span class="paragraph-text-style" *ngIf="!this.isLoadingRecommended"
+          >Contracts you might be looking for.</span
+        >
+        <span
+          class="paragraph-text-style text-loader"
+          *ngIf="this.isLoadingRecommended"
+          >Finding you the best results</span
+        >
+
         <div class="page-eggs-layout">
-          <app-egg></app-egg>
-          <app-egg></app-egg>
-          <app-egg></app-egg>
-          <app-egg></app-egg>
-          <app-egg></app-egg>
-          <app-egg></app-egg>
+          <app-egg
+            *ngFor="let company of this.recommened"
+            [data]="company"
+          ></app-egg>
         </div>
       </ion-content>
     </div>

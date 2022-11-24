@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { IEgg } from 'src/app/interfaces/IEgg';
+import { IHetcher } from 'src/app/interfaces/IHetcher';
 import { CurrencyResolverService } from 'src/app/services/currency-resolver.service';
+import { EggService } from 'src/app/services/egg.service';
+import { SessionService } from 'src/app/services/session.service';
 
 @Component({
   selector: 'app-egg',
@@ -7,12 +11,33 @@ import { CurrencyResolverService } from 'src/app/services/currency-resolver.serv
   styleUrls: ['./egg.component.scss'],
 })
 export class EggComponent implements OnInit {
+  @Input('data') data: IEgg;
+  isbookmarked = false;
+  sessionData: IHetcher;
 
-  constructor(public currencyResolver: CurrencyResolverService) { }
+  constructor(
+    public currencyResolver: CurrencyResolverService,
+    public sessionService: SessionService,
+    private eggService: EggService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.sessionService.sessionData.
+    this.isbookmarked = this.data?.bookmarks.includes(
+      this.sessionService.data?.email_address
+    );
+  }
 
   toLocaleString(number: number): string {
-    return number.toLocaleString()
+    return number.toLocaleString();
+  }
+
+  bookmark() {
+    this.eggService.bookmark(this.data.key).then((responseData: IEgg) => {
+      this.data = responseData;
+      this.isbookmarked = this.data.bookmarks.includes(
+        this.sessionService.data?.email_address
+      );
+    });
   }
 }

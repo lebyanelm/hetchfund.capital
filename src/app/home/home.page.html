@@ -7,16 +7,22 @@
     <!-- Section seperator -->
     <section class="content-wrapper">
       <br />
-      <div class="header-text-style small">Best picked eggs</div>
-      <div class="paragraph-text-style">
-        Specially picked best perfoming eggs from our farms.
+      <br />
+      <div class="header-text-style small">Best picked contracts</div>
+      <div class="paragraph-text-style" *ngIf="!this.isLoadingRecommended">
+        Specially picked best perfoming contracts from our farms.
       </div>
+      <span
+        class="paragraph-text-style text-loader"
+        *ngIf="this.isLoadingRecommended"
+        >Fetching contracts from server</span
+      >
 
       <div class="page-eggs-layout">
-        <app-egg></app-egg>
-        <app-egg></app-egg>
-        <app-egg></app-egg>
-        <app-egg></app-egg>
+        <app-egg
+          *ngFor="let recommendation of this.recommended"
+          [data]="recommendation"
+        ></app-egg>
       </div>
     </section>
   </div>

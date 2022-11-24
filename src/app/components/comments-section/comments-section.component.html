@@ -1,0 +1,79 @@
+<div class="comments-section-container">
+  <div class="header-text-style small">Community & Discusions</div>
+  <span class="paragraph-text-style"
+    >Only funders can have their comments public.</span
+  >
+  <br />
+
+  <div class="discussions">
+    <div class="discussion" *ngFor="let i of [1, 2]">
+      <div class="profile-avatar-container">
+        <div class="profile-avatar"></div>
+      </div>
+
+      <div class="discussion-contents">
+        <div class="discussion-commenter-details">
+          <a class="no-decoration" class="commenter-name">Demirjian Li</a>
+          <div class="paragraph-text-style comment-occupation">
+            Software Engineers
+          </div>
+        </div>
+
+        <div class="discussion-message">
+          Hello world this is a discussion message, post your coments below.
+        </div>
+
+        <div class="discussion-actions">
+          <a class="no-decoration" href="">Raise</a>
+          {{ " ■ " }}
+          <a class="no-decoration" href="">Reply</a>
+          {{ " ■ " }}
+          <a class="no-decoration" href="">Follow thread</a>
+        </div>
+
+        <div class="discussion-comments">
+          <div class="discussion" *ngFor="let i of [1, 2]">
+            <div class="profile-avatar-container">
+              <div class="profile-avatar"></div>
+            </div>
+
+            <div class="discussion-contents">
+              <div class="discussion-commenter-details">
+                <a class="no-decoration" class="commenter-name">Demirjian Li</a>
+                <div class="paragraph-text-style comment-occupation">
+                  Software Engineers
+                </div>
+              </div>
+
+              <div class="discussion-message">
+                Hello world this is a discussion message, post your coments
+                below.
+              </div>
+
+              <div class="discussion-actions">
+                <a class="no-decoration" href="">Raise</a>
+                {{ " ■ " }}
+                <a class="no-decoration" href="">Qoute this comment</a>
+                {{ " ■ " }}
+                <a class="no-decoration" href="">Follow thread</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-new-comment-section">
+    <ejs-richtexteditor #Editor>
+      <ng-template #valueTemplate>
+        <i
+          >Please keep the community section polite and professional, only say
+          something when it's necessary.
+          <b>Note: Remove this text before posting.</b></i
+        >
+      </ng-template>
+    </ejs-richtexteditor>
+    <button class="">Post and Open a discussion</button>
+  </div>
+</div>

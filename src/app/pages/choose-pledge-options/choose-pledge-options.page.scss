@@ -1,0 +1,118 @@
+@import "../../../variables.scss";
+
+// COMMITMENT WRAPPER
+.commitment-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.project-name {
+  color: $THEME_COLOR;
+}
+
+// COMMITMENT OPTIONS
+.commitment-options-header {
+  margin-bottom: $_20_SPACING_SIZE;
+}
+
+.commitment-options .commitment-option,
+.commitment-options .commitment-option .option-level {
+  display: flex;
+  align-items: center;
+}
+
+.commitment-options .commitment-option {
+  padding: $_20_SPACING_SIZE;
+  background: $WHITE_COLOR;
+  border: $BORDER;
+  margin-bottom: $_10_SPACING_SIZE;
+  border-radius: $BORDER_RADIUS;
+}
+
+.commitment-options .commitment-option * {
+  transition: none;
+}
+
+.commitment-options .commitment-option:hover {
+  border-color: $THEME_COLOR;
+  cursor: pointer;
+  color: $THEME_COLOR;
+}
+
+.commitment-options .commitment-option[data-selected="true"] {
+  background: $DARK_COLOR;
+  color: $WHITE_COLOR;
+  border: none;
+}
+
+.commitment-options .commitment-option .option-rewards {
+  font-size: small;
+}
+
+.commitment-options .commitment-option[data-selected="true"] .option-rewards {
+  color: $WHITE_COLOR;
+  opacity: 0.6;
+}
+
+.commitment-options .commitment-option[data-selected="true"] input {
+  border: none !important;
+}
+
+.commitment-options
+  .commitment-option[data-selected="true"]
+  .section-title-style {
+  color: $WHITE_COLOR;
+}
+
+.commitment-options .commitment-option .option-level {
+  flex-direction: column;
+  border-right: $BORDER;
+  padding-right: $_10_SPACING_SIZE;
+}
+
+.commitment-options .commitment-option.custom {
+  border: $BORDER;
+  border-color: $DARK_COLOR;
+  border-width: 3px;
+}
+
+.commitment-options .commitment-option.custom .option-level {
+  border-right: none;
+}
+
+.commitment-options .commitment-option .option-level .level {
+  font-weight: 900;
+}
+
+.commitment-options .commitment-option .option-content {
+  flex: 1;
+  padding-left: $_10_SPACING_SIZE;
+}
+
+// COMMITMENT AMOUNT
+.commitment-options .commitment-option .commitment-amount {
+  font-weight: 900;
+}
+
+.invalid-custom-commitment {
+  margin-bottom: $_10_SPACING_SIZE;
+}
+
+// Disclaimers
+.disclaimers {
+  display: flex;
+  flex-direction: column;
+  margin-top: $_20_SPACING_SIZE;
+  padding: $_20_SPACING_SIZE;
+  gap: $_5_SPACING_SIZE;
+  align-items: center;
+  width: 100%;
+}
+
+.disclaimers .policies-anchors {
+  display: flex;
+  gap: $_10_SPACING_SIZE;
+  // width: 100%;
+  // justify-content: center;
+}

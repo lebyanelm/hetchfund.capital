@@ -1,0 +1,135 @@
+<ion-content>
+  <app-header [hasBackground]="true"></app-header>
+
+  <div class="page-content with-pattern">
+    <!-- <div class="page-header">
+      <a class="page-logo" href="/"><img src="/assets/icon.svg" alt="" /></a>
+    </div> -->
+
+    <div class="content-wrapper split bordered">
+      <div class="left-side">
+        <div class="commitment-wrapper">
+          <i class="header-text-style page-name"
+            >Project name:<br />
+            <a
+              class="currency-selectable project-name"
+              [href]="'/contracts/' + this.data?.key"
+              target="_blank"
+            >
+              {{this?.data?.name}}
+            </a>
+          </i>
+
+          <!-- <p class="paragraph-text-style">
+            This is the name of the project you're funding, you're a hero for
+            funding it!
+          </p> -->
+        </div>
+      </div>
+
+      <div class="right-side">
+        <div class="commitment-wrapper">
+          <div class="paragraph-text-style commitment-options-header">
+            You're a star!
+            <span
+              class="currency-selectable"
+              (click)="this.currencyService.currencyMenuState.next(true)"
+              >{{this.currencyService.translate(this.data?.funds_left)}}</span
+            >
+            left to hetch.
+          </div>
+
+          <div class="commitment-options">
+            <div
+              class="commitment-option"
+              *ngFor="let commitment of commitmentOptions"
+              [attr.data-selected]="commitment.index === this.selectedCommitment"
+              (click)="this.selectCommitment(commitment.index)"
+            >
+              <!-- Levels which the hetcher will receive for funding this egg -->
+              <div class="option-level">
+                <div class="level">+{{commitment.index}}</div>
+                <div class="name">Levels</div>
+              </div>
+              <div class="option-content">
+                <div class="commitment-amount">
+                  Commit
+                  <b
+                    >{{this.currencyService.translate(commitment.commitment_amount)}}</b
+                  >
+                </div>
+                <div class="paragraph-text-style option-rewards">
+                  {{commitment.rewards_description}}
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="commitment-option custom"
+              [attr.data-selected]="this.selectedCommitment === -1"
+              (click)="this.selectCommitment(-1)"
+            >
+              <!-- Levels which the hetcher will receive for funding this egg -->
+              <div class="option-level">
+                <div class="name">Level</div>
+                <div class="level">+{{100}}</div>
+              </div>
+              <div class="option-content">
+                <div class="commitment-amount">
+                  <label class="section-title-style" for="">Commit more</label>
+                  <input
+                    type="text"
+                    placeholder="Enter your commitment amount"
+                    (keyup)="this.customCommitment = CustomCommitment.value"
+                    #CustomCommitment
+                  />
+                </div>
+
+                <div
+                  class="paragraph-text-style danger-text-style invalid-custom-commitment"
+                  *ngIf="CustomCommitment.value.length && this.isValidInput(CustomCommitment.value)"
+                >
+                  That's an invalid input.
+                </div>
+
+                <div
+                  class="paragraph-text-style danger-text-style invalid-custom-commitment"
+                  *ngIf="this.toInteger(CustomCommitment.value) < this.commitmentOptions[this.commitmentOptions.length-1].commitment_amount"
+                >
+                  Should be morethan commitment options.
+                </div>
+
+                <div class="paragraph-text-style option-rewards">
+                  Commitment amount is in
+                  <b>{{this.currencyService.currency}}</b> currency. You'll earn
+                  +100 points of hetcher reputation a notification from the
+                  curators with information on the rewards you'll recieve.
+                </div>
+              </div>
+            </div>
+            <button
+              class="button theme-color"
+              (click)="this.choosePaymentMethod()"
+            >
+              Choose a payment method
+            </button>
+            <!-- <button
+              [disabled]="this.selectedCommitment === -1 && CustomCommitment.value == '0'"
+              (click)="this.continueCommitment()"
+            ></button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="disclaimers">
+      <div class="paragraph-text-style">
+        All transactions are secured and safe processed with, Peach Payments.
+      </div>
+      <div class="policies-anchors">
+        <a href="">Our payment policy</a>
+        <a href="">Our third-party disclosures</a>
+      </div>
+    </div>
+  </div>
+</ion-content>

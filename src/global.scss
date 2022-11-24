@@ -26,6 +26,51 @@
 @import "~@ionic/angular/css/flex-utils.css";
 @import "./variables.scss";
 
+// Rich Text Editor
+@import "../node_modules/@syncfusion/ej2-base/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-icons/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-buttons/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-inputs/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-lists/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-navigations/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-popups/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-richtexteditor/styles/material.css";
+
+.e-toolbar-item[title="Insert Link"],
+.e-toolbar-item[title="Code View"],
+.e-toolbar-item[title="Alignments"] {
+  display: none !important;
+}
+
+#js-licensing {
+  display: none !important;
+}
+
+// YOCO INLINE PAYMENT METHOD CUSTOMIZATION
+.yc-card-form-container label,
+.formfields label {
+  font-weight: bold;
+  text-transform: uppercase;
+  opacity: 0.6;
+  font-size: small;
+}
+
+.yc-card-input-wrapper {
+  border: $BORDER;
+  border-radius: $BORDER_RADIUS;
+  padding: 5px 0;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+// CVV and Exp month split to two
+.yc-expiry-cvv-holder {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+}
+
 // GENERAL RULE STYLING AND RESETS
 body,
 ion-content,
@@ -36,10 +81,42 @@ textarea {
   --background: transparent;
 }
 
+*::-webkit-scrollbar {
+  width: 4px;
+}
+
+*::-webkit-scrollbar-track {
+  background: $LIGHT_COLOR;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: $THEME_COLOR;
+}
+
+// SELECTION COLOR
+*::selection {
+  background-color: transparentize($THEME_COLOR, 0.8);
+  color: $DARK_COLOR;
+}
+
 // PAGE CONTENT
 body .page-content {
   padding: $_20_SPACING_SIZE;
   padding-top: 80px;
+}
+
+// Page content without a header present
+body .page-content.headerless {
+  padding-top: $_20_SPACING_SIZE;
+}
+
+body .page-content .page-header {
+  padding-bottom: $_20_SPACING_SIZE;
+}
+
+body .page-content .page-header .page-logo img {
+  height: 40px;
+  filter: grayscale(1);
 }
 
 body .page-content.with-pattern::before {
@@ -70,6 +147,19 @@ body .content-wrapper {
   padding: var(--content-padding);
 }
 
+body .content-wrapper.split {
+  display: flex;
+  gap: $_20_SPACING_SIZE;
+}
+
+body .content-wrapper.split > * {
+  flex: 1;
+}
+
+body .content-wrapper.split.bordered > *:first-child {
+  border-right: $BORDER;
+}
+
 :root {
   // Utilized for responsive typography design
   --font-size-multiplier: 1;
@@ -81,7 +171,7 @@ body .content-wrapper {
 * {
   box-sizing: border-box;
   font-family: $FONT_FAMILY;
-  font-weight: 500;
+  // font-weight: 500;
 }
 
 // FIXING THE TYPOGRAPHY
@@ -110,8 +200,19 @@ body .content-wrapper {
   gap: 5px;
 }
 
+// ERROR MESSAGES
+.danger-text-style {
+  color: $DANGER_COLOR;
+}
+
+// BOLD TEXT
+.bold-text-style {
+  font-weight: bold;
+}
+
 // HEADER
-.header-text-style {
+.header-text-style,
+.header-text-style * {
   font-size: 1.875rem; // 30PX
   font-family: $FONT_FAMILY_HEADER;
   font-weight: 900; // Ultra Black weight
@@ -149,6 +250,7 @@ a {
 a:hover {
   text-decoration-thickness: 3px;
   cursor: pointer;
+  color: $SECONDARY_THEME_COLOR;
 }
 
 a.no-decoration {
@@ -171,6 +273,27 @@ button app-loader[state="false"] {
   user-select: none;
 }
 
+.text-loader::after {
+  content: "";
+  animation-name: dot-pulse;
+  animation-duration: 1000ms;
+  animation-direction: normal;
+  animation-iteration-count: infinite;
+  letter-spacing: 2px;
+}
+
+@keyframes dot-pulse {
+  25% {
+    content: " .";
+  }
+  50% {
+    content: " ..";
+  }
+  95% {
+    content: " ...";
+  }
+}
+
 // BUTTONS
 button,
 .button {
@@ -179,21 +302,26 @@ button,
   justify-content: center;
   gap: $_10_SPACING_SIZE;
   outline: none;
-  padding: 13px 15px;
-  border-radius: $BORDER_RADIUS;
   font-weight: 900;
-  background: $THEME_COLOR;
   color: $LIGHT_COLOR;
-  border: none;
   margin: 10px 0;
-  text-transform: uppercase;
-  cursor: pointer;
   opacity: 0.9;
   transition: opacity 300ms ease;
-  letter-spacing: 2px;
-  text-decoration: none !important;
+  text-align: center;
   margin-right: 10px;
   position: relative;
+
+  padding: 13px 15px;
+  border-radius: $BORDER_RADIUS;
+  /* font-weight: bold; */
+  background: $THEME_COLOR;
+  border: none;
+  text-transform: uppercase;
+  font-size: small;
+  cursor: pointer;
+  transition: opacity 300ms ease;
+  letter-spacing: 2px;
+  font-family: "Roboto", sans-serif;
 }
 
 button > span,
@@ -238,13 +366,20 @@ button:hover:not(:disabled),
   opacity: 1;
 }
 
-button.error,
-.button.error {
+button.danger,
+.button.danger {
   background: $DANGER_COLOR;
 }
 
+button.secondary.danger,
+.button.secondary.danger {
+  background: $WHITE_COLOR !important;
+  color: $DANGER_COLOR;
+}
+
 // INPUTS
-input {
+input,
+textarea {
   display: block;
   outline: none;
   width: 100%;
@@ -259,12 +394,72 @@ input {
   cursor: pointer;
   text-decoration: none !important;
   margin-right: 10px;
+  font-family: "Fira Code", monospace, sans-serif !important;
+  font-weight: 500;
+}
+
+input[type="checkbox"] {
+  display: inline-block;
+  width: 0;
+}
+
+.checkbox {
+  display: flex;
+  margin-bottom: $_10_SPACING_SIZE;
+}
+
+textarea {
+  text-indent: 0;
+  padding: 10px 15px;
+  resize: none;
+}
+
+// SELECT INPUTS
+.select {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: $_10_SPACING_SIZE 0;
+}
+
+select {
+  appearance: none;
+  outline: none;
+  position: relative;
+  border: $BORDER;
+  background: $WHITE_COLOR;
+  padding: $_10_SPACING_SIZE $_20_SPACING_SIZE $_10_SPACING_SIZE
+    $_10_SPACING_SIZE;
+  font-weight: bold;
+  width: 100%;
+}
+
+select:disabled {
+  opacity: 0.7;
+}
+
+.select-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 $_10_SPACING_SIZE;
+  position: absolute;
+  top: 0;
+  right: 0;
+  pointer-events: none;
+  background: transparent;
+}
+
+select::-ms-expand {
+  display: none;
 }
 
 // EGGS LAYOUT
 .page-eggs-layout {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
   gap: $_20_SPACING_SIZE;
   padding: calc($_20_SPACING_SIZE * 2) 0;
   height: fit-content;
@@ -277,6 +472,11 @@ input {
   position: absolute;
   bottom: 0;
   left: 0;
+}
+
+.page-eggs-layout app-egg {
+  display: block;
+  height: 100%;
 }
 
 // FORM FIELDS: SIGN IN FIELDS, CREATE ACCOUNT
@@ -361,6 +561,9 @@ input {
 
 // FOR SPLITING SECTIONS INTO GROUPS
 .separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   // height: 3px;
   border-top: $BORDER;
@@ -371,15 +574,29 @@ input {
 .separator::before {
   content: attr(title);
   display: block;
-  position: absolute;
+  width: fit-content;
   background: $BACKGROUND_COLOR;
   padding: 0 $_10_SPACING_SIZE;
   font-size: small;
   text-transform: uppercase;
   font-weight: bold;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
+  transform: translateY(-50%);
+}
+
+// CURRENCY RELATED
+.currency-selectable {
+  display: inline-block;
+  padding-bottom: 2px;
+  text-decoration: underline;
+  font-weight: bold;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.currency-selectable:hover {
+  color: $THEME_COLOR;
+  opacity: 1;
 }
 
 // RESPONSIVENESS
@@ -416,6 +633,133 @@ input {
   .page-content {
     padding: 10px;
   }
+}
+
+// DROPDOWN MENUS
+.dropdown {
+  position: relative;
+}
+
+.dropdown .dropdown-content {
+  display: none;
+}
+
+.dropdown.open .dropdown-content,
+.box {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200px;
+  transform: translateY(calc(100% + 10px)) translateX(calc(0));
+  background: $WHITE_COLOR;
+  padding: $_10_SPACING_SIZE;
+  max-height: calc(100vh - 80px);
+  overflow-y: scroll;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.1);
+  border-radius: $BORDER_RADIUS;
+}
+
+.dropdown .dropdown-content a {
+  color: $DARK_COLOR !important;
+}
+
+.dropdown .dropdown-content a:hover {
+  color: $THEME_COLOR !important;
+}
+
+// TO BRIDGE THE HOVERING STATE BETWEEN LINK AND DROPDOWN CONTENT
+.dropdown.open::after {
+  content: "";
+  display: block;
+  height: 40px;
+  width: 100%;
+  background: transparent;
+  position: absolute;
+  bottom: 0;
+  transform: translateY(60%);
+  left: 0;
+  z-index: 100;
+}
+
+.dropdown .dropdown-content > a {
+  padding: $_10_SPACING_SIZE;
+  border-bottom: $BORDER;
+}
+
+.dropdown .dropdown-content > a:last-child {
+  border-bottom: none;
+}
+
+.dropdown .dropdown-content > a:hover {
+  background: transparentize($GRAY_COLOR, 0.7);
+}
+
+.dropdown .dropdown-content a[data-isselected="true"] {
+  background: $THEME_COLOR;
+  color: $WHITE_COLOR !important;
+  border-bottom: none;
+}
+
+// MODALS
+.default-modal {
+  --backdrop-opacity: 0.8;
+}
+
+.consent-modal {
+  --height: 200px;
+}
+
+.modal-container {
+  padding: $_20_SPACING_SIZE;
+  overflow-y: none;
+  position: relative;
+  height: 100%;
+}
+
+.modal-container .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: $_10_SPACING_SIZE;
+  margin-bottom: $_10_SPACING_SIZE;
+  // border-bottom: $BORDER;
+}
+
+.consent-modal .modal-header {
+  margin: 0 !important;
+}
+
+.modal-container .modal-footer {
+  width: calc(100% - 40px);
+  background: $WHITE_COLOR;
+  padding: $_10_SPACING_SIZE 0;
+  margin-top: $_10_SPACING_SIZE;
+  border-top: $BORDER;
+  position: absolute;
+  bottom: 0;
+}
+
+.modal-content {
+  overflow-y: scroll;
+  max-height: 70%;
+}
+
+// DISCLAIMERS
+.disclaimers {
+  display: flex;
+  flex-direction: column;
+  margin-top: $_20_SPACING_SIZE;
+  padding: $_20_SPACING_SIZE;
+  gap: $_5_SPACING_SIZE;
+  align-items: center;
+  width: 100%;
+}
+
+.disclaimers .policies-anchors {
+  display: flex;
+  gap: $_10_SPACING_SIZE;
 }
 
 // LARGER SCREEN SIZES

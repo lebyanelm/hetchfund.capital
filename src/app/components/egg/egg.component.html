@@ -1,36 +1,76 @@
 <div class="egg-campaign-container">
-  <div class="thumbnail-container"></div>
-  <div class="egg-campaign-details">
-    <div class="name-bookmark-section">
-      <a
-        class="name header-text-style smaller"
-        href="/campaigns/the-ranchers---JAHaP46MEs"
-        >DearBuds: Powerful Hi-Fi Speaker with Iconic Design.</a
-      >
-      <button class="bookmark-button icon-button" isBookmarked="false">
-        <ion-icon name="bookmark-sharp"></ion-icon>
-      </button>
-    </div>
+  <div class="egg-details-content">
+    <div
+      class="thumbnail-container"
+      [style.background-image]="'url(' + this.data?.thumbnail_url + ')'"
+    ></div>
+    <div class="egg-campaign-details">
+      <div class="name-bookmark-section">
+        <a
+          class="name header-text-style smaller"
+          [href]="'/contracts/' + this.data?.key"
+          >{{ this.data?.name }}</a
+        >
+        <button
+          class="bookmark-button icon-button"
+          [attr.isBookmarked]="this.isbookmarked"
+          (click)="this.bookmark()"
+        >
+          <ion-icon name="bookmark-sharp"></ion-icon>
+        </button>
+      </div>
 
-    <!-- The name of the egg campaign -->
-    <div class="description paragraph-text-style">
-      A studio-grade professional listening experience sets musicians back
-      $10,000s.
+      <!-- The name of the egg campaign -->
+      <div class="description paragraph-text-style">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
+        aperiam mollitia corrupti porro. Aliquam quia facilis tenetur tempore
+        nam excepturi?.
+      </div>
     </div>
-
-    <a class="category">Video Games and Technology</a>
   </div>
 
-  <div class="funding-perfomance">
-    <div class="amount-funded-percentage">
-      <!-- <div class="amount-funded">
-        ZAR{{this.toLocaleString(3454323.30)}} raised
-      </div> -->
-      <strong class="percentage-funded">32.33% funded</strong>
-    </div>
+  <div class="egg-funding-details">
+    <div class="funding-perfomance">
+      <div class="amount-funded-percentage">
+        <!-- <div class="amount-funded">
+          ZAR{{this.toLocaleString(3454323.30)}} raised
+        </div> -->
+        <a class="category">{{ this.data?.primary_category }}</a>
+        <span>
+          <ins class="percentage-funded"
+            >{{ this.data?.hetched_funds_perc }}%</ins
+          >
+          <span> out of </span>
+          <ins
+            class="currency-selectable"
+            (click)="this.currencyResolver.showCurrencyMenu()"
+            >{{
+              this.currencyResolver.translate(this.data?.hetching_goal)
+            }}</ins
+          >
+          <span> funded</span>
+        </span>
 
-    <div class="funding-progress">
-      <div class="funding-progress-current"></div>
+        <!-- <span
+          class="amount-funded currency-selectable"
+          (click)="this.currencyResolver.showCurrencyMenu()"
+          >{{ this.currencyResolver.translate(this.data?.hetched_funds) }} raised
+          in total</span -->
+        <!-- > -->
+      </div>
+
+      <div class="funding-progress">
+        <div
+          class="funding-progress-current"
+          [style]="
+            'width:' +
+            (this.data?.hetched_funds_perc >= 100
+              ? 100
+              : this.data?.hetched_funds_perc) +
+            '%'
+          "
+        ></div>
+      </div>
     </div>
   </div>
 </div>
